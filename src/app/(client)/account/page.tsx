@@ -1,9 +1,6 @@
-import Navbar from "@/components/Navbar";
-
 export default function Account() {
   return (
     <div>
-      <Navbar />
       <div className="h-[100vh] flex  flex-col ">
         <h2 className="text-[28px] font-bold mb-[25px]">Account</h2>
         <p className="text-[gray] mb-[15px]">

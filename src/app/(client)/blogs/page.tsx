@@ -1,16 +1,80 @@
-import Navbar from "@/components/Navbar";
+"use client";
+import Card from "@/components/Card";
 
-export default function Blogs() {
+export default function Reports() {
   return (
     <div>
-      <Navbar />
-      <div className="h-[100vh] flex  flex-col ">
-        <h2 className="text-[28px] font-bold mb-[25px]">Blogs</h2>
-        <p className="text-[gray] mb-[15px]">
-          Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec odio.
-          Quisque volutpat mattis eros. Nullam malesuada erat ut turpis.
-          Suspendisse urna nibh viverra non semper suscipit posuere a pede.
-        </p>
+      <div className="flex  flex-col ">
+        <h2 className="text-[28px] ml-[7vw]  mt-[3vw]  font-bold mb-[25px]">
+          Blogs
+        </h2>
+
+        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto ">
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 1"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 2"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 3"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 4"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 5"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 6"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 7"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+          <Card
+            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            author="John Doe"
+            date="February 3, 2024"
+            tag="Technology"
+            title="Blog 8"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+          />
+        </div>
       </div>
     </div>
   );
