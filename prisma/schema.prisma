@@ -3,6 +3,45 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
+}
+
+model blog{
+  id           Int       @id @default(autoincrement()) 
+  slug         String    @unique
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  title        String    
+  content_file String
+  published    DateTime  
+  tor          String     //time of reading
+  thumbnail    image     @relation(fields: [image_id], references: [id])
+  image_id     Int       
+  author       String     
+  tags         tag[]
+  posted_by    admin     @relation(fields: [admin_id],references: [id])       
+  admin_id     Int
+  is_report    Boolean   @default(false)
+}
+
+model tag{
+   id           Int       @id @default(autoincrement())
+   name         String 
+   blogs        blog[]
+}
+
+model image{
+  id           Int       @id @default(autoincrement()) 
+  url          String    
+  display_name String
+  blogs        blog[]
+}
+
+model admin{
+  id           Int       @id @default(autoincrement())
+  name         String 
+  email        String    @unique
+  password     String
+  blogs        blog[]
 }
