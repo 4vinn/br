@@ -75,3 +75,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+
+
+
+## Routes related to blogs (For User)
+get all blogs 
+get blogs categorised by it's tags
+get blog by it's slug 
+get blogs categorised by the admin posted it
+
+## Routes related to blogs (ONLY ADMINS)
+post a new blog
+
+## Routes related to tags (ONlY ADMINS)
+get all the tags
+post a new tag
+delete a existing tag
+
+
