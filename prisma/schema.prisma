@@ -13,7 +13,7 @@ model blog{
   createdAt    DateTime  @default(now())
   updatedAt    DateTime  @updatedAt
   title        String    
-  content_file String
+  content      String
   published    DateTime  
   tor          String     //time of reading
   thumbnail    image     @relation(fields: [image_id], references: [id])
@@ -29,13 +29,16 @@ model tag{
    id           Int       @id @default(autoincrement())
    name         String 
    blogs        blog[]
+   createdAt    DateTime  @default(now())
+   updatedAt    DateTime  @updatedAt
 }
 
 model image{
   id           Int       @id @default(autoincrement()) 
-  url          String    
-  display_name String
+  data         String    
   blogs        blog[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
 
 model admin{
@@ -44,4 +47,7 @@ model admin{
   email        String    @unique
   password     String
   blogs        blog[]
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
+

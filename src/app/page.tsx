@@ -248,10 +248,10 @@ export default function Home() {
                     <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#bb0000] group-hover:ml-4 transition-all ease-out duration-300">
                       We talk to you every day.
                     </h2>
-                    <p className="mt-2 opacity-60 text-white group-hover:text-black group-hover:opacity-100 group-hover:opacity-80 ">
+                    <p className="mt-2 opacity-60 text-white group-hover:text-black group-hover:opacity-80 ">
                       Your success is our priority. We keep you informed with
-                      timely insights and guidance, ensuring you're prepared to
-                      seize opportunities as they arise. With us, you're never
+                      timely insights and guidance, ensuring youre prepared to
+                      seize opportunities as they arise. With us, youre never
                       alone on your investment journey.
                     </p>
                   </div>
