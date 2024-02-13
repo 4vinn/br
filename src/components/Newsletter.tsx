@@ -1,7 +1,7 @@
 "use client";
 
-import { getPlaneKeyframes } from "@/app/lib/getPlaneKeyframes";
-import { getTrailsKeyframes } from "@/app/lib/getTrailsKeyframes";
+import { getPlaneKeyframes } from "@/lib/getPlaneKeyframes";
+import { getTrailsKeyframes } from "@/lib/getTrailsKeyframes";
 import { gsap } from "gsap";
 import { FormEvent, useRef, useState } from "react";
 
