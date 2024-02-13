@@ -87,7 +87,7 @@ get blog by it's slug
 get blogs categorised by the admin posted it
 
 ## Routes related to blogs (ONLY ADMINS)
-<!-- post a new blog -->
+post a new blog
 
 ## Routes related to tags (ONlY ADMINS)
 get all the tags
