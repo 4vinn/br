@@ -50,7 +50,7 @@ function Newsletter() {
             placeholder="Enter your email"
             required
             type="email"
-            className="flex-1 text-black outline-none placeholder-lightgrey bg-transparent group-focus-within:placeholder-black "
+            className="flex-1 text-white outline-none placeholder-lightgrey bg-transparent group-focus-within:placeholder-black "
           />
           <button
             ref={buttonRef}
@@ -65,7 +65,7 @@ function Newsletter() {
               <svg viewBox="0 0 16 16">
                 <polyline points="3.75 9 7 12 13 5"></polyline>
               </svg>
-              Done
+              Done!
             </span>
             <svg className="trails" viewBox="0 0 33 64">
               <path d="M26,4 C28,13.3333333 29,22.6666667 29,32 C29,41.3333333 28,50.6666667 26,60"></path>

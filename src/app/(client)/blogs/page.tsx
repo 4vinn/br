@@ -11,7 +11,7 @@ export default function Reports() {
 
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mx-auto ">
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -19,7 +19,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -27,7 +27,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -35,7 +35,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -43,7 +43,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -51,7 +51,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -59,7 +59,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"
@@ -67,7 +67,7 @@ export default function Reports() {
             description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
           />
           <Card
-            imageUrl="https://images.ctfassets.net/lzny33ho1g45/55HHijaR40u7cFagKFh94s/d54fa1b7ff08ad10bba62d8ab1892da4/best-ai-website-builders.jpg?w=1520&fm=avif&q=30&fit=thumb&h=760"
+            imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             author="John Doe"
             date="February 3, 2024"
             tag="Technology"

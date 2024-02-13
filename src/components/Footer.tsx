@@ -18,7 +18,7 @@ const Footer = () => {
           </div>
           <div>
             <span className="flex flex-row gap-5 ">
-              <Link href="LinedIn">
+              <Link href="LinkedIn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"
@@ -30,7 +30,7 @@ const Footer = () => {
                   />
                 </svg>
               </Link>
-              <Link href="LinedIn">
+              <Link href="Twitter">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 448 512"

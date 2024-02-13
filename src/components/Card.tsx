@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 interface CardProps {
@@ -18,21 +19,25 @@ const Card: React.FC<CardProps> = ({
   description,
 }) => {
   return (
-    <div className="card transform transition-transform hover:scale-105 hover:shadow-lg">
+    <div className="card transform transition-transform hover:scale-[1.025] hover:shadow-lg">
       <img src={imageUrl} alt="Card Image" className="card-image " />
 
-      <div className="card-info py-[20px]">
-        <div className="meta flex justify-between text-xs text-gray-500">
+      <div className="card-info py-[.5rem]">
+        <div className="meta flex justify-between text-[.8rem] text-[#28281e] border-b-[1px] pb-[.5rem]">
           <span>{author}</span>
           <span>{date}</span>
-          <span>#{tag}</span>
+          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] text-[.78rem] border border-[#55ee6ac9]">
+            #{tag}
+          </span>
         </div>
-
-        <h2 className="card-title pt-[10px] text-lg font-bold mb-2">{title}</h2>
-
-        <p className="card-description text-sm text-gray-700 mb-4">
-          {description}
-        </p>
+        <Link href="/">
+          <h2 className="card-title pt-[.4rem] text-lg font-bold mb-1">
+            {title}
+          </h2>
+          <p className="card-description text-sm text-gray-500 mb-3">
+            {description}
+          </p>
+        </Link>
       </div>
 
       <style jsx>{`
@@ -44,13 +49,13 @@ const Card: React.FC<CardProps> = ({
           display: flex;
           flex-direction: column;
           border: 1px solid white;
-          margin: 10px;
-          padding: 15px;
+          // margin: 10px;
+          padding: 0.3rem;
           max-width: 300px;
           text-align: left;
         }
         .card:hover {
-          background-color: #f0f0f0; /* Change the background color on hover */
+          background-color: #fff; /* Change the background color on hover */
         }
         .imageContainer {
           display: flex;
@@ -72,7 +77,7 @@ const Card: React.FC<CardProps> = ({
         }
 
         .title {
-          margin-top: 10px;
+          // margin-top: 10px;
         }
 
         .description {

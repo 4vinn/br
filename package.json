@@ -9,10 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@splinetool/react-spline": "^2.2.6",
     "gsap": "^3.12.5",
+    "gsap-trial": "^3.12.5",
+    "jodit-react": "^4.0.9",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
+    "split-text-js": "^1.0.3",
     "typed.js": "^2.1.0"
   },
   "devDependencies": {

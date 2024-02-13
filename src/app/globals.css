@@ -26,23 +26,43 @@
   animation: rotate 5s ease-in-out infinite; /* Adjust the duration and easing as needed */
 }
 
+@keyframes scaleAnimation {
+  0% {
+    transform: scale(1) rotate(90deg);
+  }
+  50% {
+    transform: scale(1.1) rotate(90deg);
+  }
+  100% {
+    transform: scale(1) rotate(90deg);
+  }
+}
+
+/* Apply animation properties to the Image component */
+.scaleAnimation {
+  animation-name: scaleAnimation;
+  animation-duration: 5s; /* Adjust the duration as needed */
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
 @layer base {
   .text-stroke {
     -webkit-text-stroke: 1px rgba(248, 248, 248, 0.3);
   }
 
   .newsletter-form {
-    --primary: #edc460;
-    --primary-dark: #816c36;
-    --primary-darkest: #816c36;
+    --primary: #f1f1f1;
+    --primary-dark: #898989;
+    --primary-darkest: #111111;
     --input-placeholder: #a6accd;
     --input-text: #646b8c;
     --border-default: #e3f9e1;
     --border-active: #4ec25c;
     --background: #fff;
     --button-text: #ffffff;
-    --success: #85d629;
-    --trails: #edc460;
+    --success: #98e73d;
+    --trails: #d5d5d5;
   }
 
   .newsletter-form button {
