@@ -39,7 +39,7 @@ export async function POST(req: NextRequest) {
                     published: true,
                     tor: true,
                     is_report: true,
-                    content_file: true,
+                    content: true,
                     author: true,
                     posted_by: {
                         select: {
@@ -54,8 +54,7 @@ export async function POST(req: NextRequest) {
                     },
                     thumbnail: {
                         select: {
-                            display_name: true,
-                            url: true,
+                            data : true,
                         }
                     },
                 }
@@ -75,7 +74,7 @@ export async function POST(req: NextRequest) {
                             published: true,
                             tor: true,
                             is_report: true,
-                            content_file: true,
+                            content: true,
                             author: true,
                             posted_by: {
                                 select: {
@@ -90,8 +89,7 @@ export async function POST(req: NextRequest) {
                             },
                             thumbnail: {
                                 select: {
-                                    display_name: true,
-                                    url: true,
+                                    data: true,
                                 }
                             },
                         }
@@ -108,7 +106,7 @@ export async function POST(req: NextRequest) {
                             published: true,
                             tor: true,
                             is_report: true,
-                            content_file: true,
+                            content: true,
                             author: true,
                             posted_by: {
                                 select: {
@@ -123,8 +121,7 @@ export async function POST(req: NextRequest) {
                             },
                             thumbnail: {
                                 select: {
-                                    display_name: true,
-                                    url: true,
+                                    data: true,
                                 }
                             },
                         }
@@ -136,7 +133,7 @@ export async function POST(req: NextRequest) {
                     blogs = await prismadb.blog.findMany({
                         where: {
                             is_report: is_report,
-                            AND: tags.map((tag : string) => ({
+                            AND: tags.map((tag: string) => ({
                                 tags: {
                                     some: {
                                         name: tag,
@@ -151,7 +148,7 @@ export async function POST(req: NextRequest) {
                             published: true,
                             tor: true,
                             is_report: true,
-                            content_file: true,
+                            content: true,
                             author: true,
                             posted_by: {
                                 select: {
@@ -166,8 +163,7 @@ export async function POST(req: NextRequest) {
                             },
                             thumbnail: {
                                 select: {
-                                    display_name: true,
-                                    url: true,
+                                    data: true
                                 }
                             },
                         }
@@ -177,7 +173,7 @@ export async function POST(req: NextRequest) {
                     blogs = await prismadb.blog.findMany({
                         where: {
                             is_report: is_report,
-                            AND: tags.map((tag : string) => ({
+                            AND: tags.map((tag: string) => ({
                                 tags: {
                                     some: {
                                         name: tag,
@@ -191,7 +187,7 @@ export async function POST(req: NextRequest) {
                             published: true,
                             tor: true,
                             is_report: true,
-                            content_file: true,
+                            content: true,
                             author: true,
                             posted_by: {
                                 select: {
@@ -206,8 +202,7 @@ export async function POST(req: NextRequest) {
                             },
                             thumbnail: {
                                 select: {
-                                    display_name: true,
-                                    url: true,
+                                    data : true,
                                 }
                             },
                         }
