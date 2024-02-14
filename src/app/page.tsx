@@ -1,10 +1,11 @@
 "use client";
 import { Poppins } from "next/font/google";
+import * as React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import Typed from "typed.js";
-import Newsletter from "@/components/Newsletter";
-import Card from "@/components/Card";
+import Newsletter from "../components/Newsletter";
+import Card from "../components/Card";
 import Spline from "@splinetool/react-spline";
 import { useEffect, useRef } from "react";
 
@@ -38,7 +39,7 @@ export default function Home() {
     const perspective = window.innerWidth * 4;
     const rotateX = maxRotate * x - maxRotate / 2;
     const rotateY = (maxRotate * y - maxRotate / 2) * -1;
-    plane.current.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
+    plane!.current!.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
   };
 
   return (
