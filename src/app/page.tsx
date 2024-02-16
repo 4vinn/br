@@ -1,16 +1,13 @@
 "use client";
-import { Poppins } from "next/font/google";
-import * as React from 'react';
 import Link from "next/link";
 import Image from "next/image";
 import Typed from "typed.js";
 import Newsletter from "../components/Newsletter";
 import Card from "../components/Card";
 import Spline from "@splinetool/react-spline";
-import { useEffect, useRef } from "react";
-
-// const Poppins = Poppins({ subsets: ["latin"], weight: ["400"] });
-
+import { MouseEvent, useEffect, useRef } from "react";
+import Sectors from "@/components/Sectors";
+import dynamic from "next/dynamic";
 export default function Home() {
   const el = useRef(null);
 
@@ -30,10 +27,10 @@ export default function Home() {
     };
   }, []);
 
-  const plane = useRef(null);
+  const plane = useRef(null!);
   const maxRotate = 20;
 
-  const manageMouseMove = (e) => {
+  const manageMouseMove = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
     const perspective = window.innerWidth * 4;
@@ -41,6 +38,12 @@ export default function Home() {
     const rotateY = (maxRotate * y - maxRotate / 2) * -1;
     plane!.current!.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
   };
+
+  const Earth = dynamic(() => import("@/components/Earth"), {
+    ssr: false,
+
+    loading: () => <img src="/as.png"></img>,
+  });
 
   return (
     <main>
@@ -52,14 +55,9 @@ export default function Home() {
             scene="https://prod.spline.design/pvM5sSiYV2ivWraz/scene.splinecode"
           />
         </div> */}
-        <div className="3d absolute ml-[68vw] mt-[43vh] z-10">
-          <video autoPlay loop muted src="/coin.webm" width={90}></video>
-        </div>
-        <div className="3d absolute ml-[75vw] mt-[24vh] z-10">
-          <video autoPlay loop muted src="/coin.webm" width={90}></video>
-        </div>
-        <div className="3d absolute ml-[82vw] mt-[43vh] z-10">
-          <video autoPlay loop muted src="/coin.webm" width={90}></video>
+
+        <div className="3d absolute ml-[65vw] mt-[13vh] z-10 w-[30rem] h-[30rem]">
+          <Earth />
         </div>
         <div className="bganimateR h-[120vh] w-[90vw] absolute -z-[1] right-[0]  -top-[4rem] overflow-hidden">
           <Image
@@ -128,7 +126,7 @@ export default function Home() {
           </Link>
         </div>
         {/* --------------------------Newletter---------------------------- */}
-        <div className="flex flex-col items-center bg-black w-[83vw] mx-auto py-20 rounded-[1.5rem]">
+        <div className="flex flex-col items-center bg-black w-[83vw] mx-auto py-20 px-20 rounded-[1.5rem]">
           <h1 className="text-white text-[30px] mb-[15px] max-w-[900px] text-center">
             Get the BlackRabbit newsletter and understand the markets!
           </h1>
@@ -204,7 +202,7 @@ export default function Home() {
             <h1 className="text-[2.5rem]">OUR PROMISE TO YOU</h1>
           </div>
 
-          <div className="container mx-auto  lg:px-10 py-10">
+          <div className="w-[95%] mx-auto  lg:px-10 py-10">
             <div
               onMouseMove={(e) => {
                 manageMouseMove(e);
@@ -301,8 +299,8 @@ export default function Home() {
           <div className="flex flex-col m-auto w-[84vw] py-8 md:flex-row">
             <div className="w-full md:w-1/2">
               <div className="relative h-full ml-5 mr-5 sm:mr-5">
-                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black hover:bg-indigo-400"></span>
-                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-indigo-400 hover:scale-[1.06] ease-out duration-300 group">
+                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
+                <div className="group relative h-full p-5 bg-white border-2 border-black hover:border-indigo-400 hover:scale-[1.07] ease-out duration-300 rounded-[2rem] ">
                   <div className="flex items-center -mt-1">
                     <h3 className="my-2 ml-3 group-hover:ml-0 text-lg font-bold text-gray-800 group-hover:text-indigo-400 transition-all ease-out duration-300">
                       Asset Allocation
@@ -320,8 +318,8 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/2">
               <div className="relative h-full ml-5 mr-5 sm:mr-5">
-                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black"></span>
-                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-red-400 hover:scale-[1.06] ease-out duration-300 group">
+                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
+                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-red-400 hover:scale-[1.07] ease-out duration-300 group rounded-[2rem]">
                   <div className="flex items-center -mt-1">
                     <h3 className="my-2 ml-3 group-hover:ml-0 text-lg font-bold text-gray-800 group-hover:text-red-400 transition-all ease-out duration-300">
                       Analysts
@@ -340,8 +338,8 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/2">
               <div className="relative h-full ml-5 mr-5 sm:mr-5">
-                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black"></span>
-                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-[springgreen] hover:scale-[1.06] ease-out duration-300 group">
+                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
+                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-[springgreen] hover:scale-[1.07] ease-out duration-300 group rounded-[2rem]">
                   <div className="flex items-center -mt-1">
                     <h3 className="my-2 ml-3 group-hover:ml-0 text-lg font-bold text-gray-800 group-hover:text-[springgreen] transition-all ease-out duration-300">
                       10X Your decision making
@@ -360,8 +358,8 @@ export default function Home() {
             </div>
             <div className="w-full md:w-1/2">
               <div className="relative h-full ml-5 mr-5 sm:mr-5">
-                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black"></span>
-                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-blue-600 hover:scale-[1.06] ease-out duration-300 group">
+                <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
+                <div className="relative h-full p-5 bg-white border-2 border-black hover:border-blue-600 hover:scale-[1.07] ease-out duration-300 group rounded-[2rem]">
                   <div className="flex items-center -mt-1">
                     <h3 className="my-2 ml-3 group-hover:ml-0 text-lg font-bold text-gray-800 group-hover:text-blue-600 transition-all ease-out duration-300">
                       Macro & Micro
@@ -379,6 +377,13 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+        {/* --------------------------sectors---------------------------- */}
+        <div className="w-[84vw] m-auto py-8">
+          <div className="w-[84vw] flex justify-between border-b-[2px]">
+            <h1 className="text-[2.5rem]">WHAT SECTORS WE TRACK? </h1>
+          </div>
+          <Sectors />
         </div>
         {/* --------------------------reports---------------------------- */}
         <div className="flex justify-center flex-col items-center text-center py-8">
