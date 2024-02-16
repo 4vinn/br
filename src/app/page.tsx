@@ -5,7 +5,7 @@ import Typed from "typed.js";
 import Newsletter from "../components/Newsletter";
 import Card from "../components/Card";
 import Spline from "@splinetool/react-spline";
-import { MouseEvent, useEffect, useRef } from "react";
+import React, { MouseEvent, useEffect, useRef } from "react";
 import Sectors from "@/components/Sectors";
 import dynamic from "next/dynamic";
 export default function Home() {
@@ -27,10 +27,10 @@ export default function Home() {
     };
   }, []);
 
-  const plane = useRef<any>(null!);
+  const plane = useRef(null!);
   const maxRotate = 20;
 
-  const manageMouseMove = (e : any) => {
+  const manageMouseMove = (e) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
     const perspective = window.innerWidth * 4;
@@ -41,8 +41,7 @@ export default function Home() {
 
   const Earth = dynamic(() => import("@/components/Earth"), {
     ssr: false,
-
-    loading: () => <Image src="/as.png" alt="earth" width={300} height={300}/>,
+    loading: () => <img src="/as.png" alt="earth" />,
   });
 
   return (
@@ -145,9 +144,11 @@ export default function Home() {
           </div>
           <div className=" sm:w-[90vw] md:w-[80vw] lg:w-[50vw]">
             <iframe
+              // width="960"
+              // height="540"
               className="w-full aspect-video"
               loading="lazy"
-              srcDoc={`<style>
+              srcDoc="<style>
                 * {
                 padding: 0;
                 margin: 0;
@@ -181,7 +182,8 @@ export default function Home() {
               <a href='https://www.youtube.com/embed/dQw4w9WgXcQ?si=beUyA_jrSpSmuh7p?autoplay=1'>
                 <img src='https://i.ytimg.com/vi/dQw4w9WgXcQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDRxusbm2_TGTnDWEIhBTYW2cUQkw' alt='youtube video'>
                 <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='#ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-play-circle'><circle cx='12' cy='12' r='10'></circle><polygon points='10 8 16 12 10 16 10 8'></polygon></svg>
-              </a>`}
+              </a>
+              "
               src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=beUyA_jrSpSmuh7p"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -201,7 +203,8 @@ export default function Home() {
 
           <div className="w-[95%] mx-auto  lg:px-10 py-10">
             <div
-              onMouseMove={(e) => {
+              onMouseMove={(e : React.ChangeEvent<any>) => {
+                console.log('hey');
                 manageMouseMove(e);
               }}
               ref={plane}
@@ -418,12 +421,10 @@ export default function Home() {
               date="February 3, 2024"
               tag="Technology"
               title="Report 1"
-              slug="ldkjfdlfj"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             />
 
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"
@@ -433,7 +434,6 @@ export default function Home() {
             />
 
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"
@@ -443,7 +443,6 @@ export default function Home() {
             />
 
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"
@@ -484,7 +483,6 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"
@@ -494,7 +492,6 @@ export default function Home() {
             />
 
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"
@@ -504,7 +501,6 @@ export default function Home() {
             />
 
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"
@@ -514,7 +510,6 @@ export default function Home() {
             />
 
             <Card
-              slug="ldkjfdlfj"
               imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               author="John Doe"
               date="February 3, 2024"

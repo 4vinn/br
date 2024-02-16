@@ -13,26 +13,32 @@
   0% {
     transform: rotate(0deg);
   }
+
   50% {
-    transform: rotate(20deg); /* Rotate clockwise */
+    transform: rotate(20deg);
+    /* Rotate clockwise */
   }
+
   100% {
-    transform: rotate(
-      0deg
-    ); /* Rotate counterclockwise to return to the initial position */
+    transform: rotate(0deg);
+    /* Rotate counterclockwise to return to the initial position */
   }
 }
+
 .animate-rotate {
-  animation: rotate 5s ease-in-out infinite; /* Adjust the duration and easing as needed */
+  animation: rotate 5s ease-in-out infinite;
+  /* Adjust the duration and easing as needed */
 }
 
 @keyframes scaleAnimation {
   0% {
     transform: scale(1) rotate(90deg);
   }
+
   50% {
     transform: scale(1.1) rotate(90deg);
   }
+
   100% {
     transform: scale(1) rotate(90deg);
   }
@@ -41,7 +47,8 @@
 /* Apply animation properties to the Image component */
 .scaleAnimation {
   animation-name: scaleAnimation;
-  animation-duration: 5s; /* Adjust the duration as needed */
+  animation-duration: 5s;
+  /* Adjust the duration as needed */
   animation-iteration-count: infinite;
   animation-timing-function: ease-in-out;
 }
@@ -119,11 +126,13 @@
     background: var(--primary);
     border-radius: var(--border-radius);
   }
+
   .newsletter-form button .plane,
   .newsletter-form button .trails {
     pointer-events: none;
     position: absolute;
   }
+
   .newsletter-form button .plane {
     left: 0;
     top: 0;
@@ -131,6 +140,7 @@
     bottom: 0;
     transform: translate(var(--x), var(--y)) rotate(var(--rotate)) translateZ(0);
   }
+
   .newsletter-form button .plane .left,
   .newsletter-form button .plane .right {
     position: absolute;
@@ -141,6 +151,7 @@
     opacity: var(--plane-opacity);
     transform: translate(var(--plane-x), var(--plane-y)) translateZ(0);
   }
+
   .newsletter-form button .plane .left:before,
   .newsletter-form button .plane .left:after,
   .newsletter-form button .plane .right:before,
@@ -155,23 +166,14 @@
     transform: translate(var(--part-x, 0.25%), var(--part-y, 0)) translateZ(0);
     z-index: var(--z-index, 2);
     background: var(--b, var(--left-wing-background));
-    -webkit-clip-path: polygon(
-      var(--first-x, var(--left-wing-first-x))
-        var(--first-y, var(--left-wing-first-y)),
-      var(--second-x, var(--left-wing-second-x))
-        var(--second-y, var(--left-wing-second-y)),
-      var(--third-x, var(--left-wing-third-x))
-        var(--third-y, var(--left-wing-third-y))
-    );
-    clip-path: polygon(
-      var(--first-x, var(--left-wing-first-x))
-        var(--first-y, var(--left-wing-first-y)),
-      var(--second-x, var(--left-wing-second-x))
-        var(--second-y, var(--left-wing-second-y)),
-      var(--third-x, var(--left-wing-third-x))
-        var(--third-y, var(--left-wing-third-y))
-    );
+    -webkit-clip-path: polygon(var(--first-x, var(--left-wing-first-x)) var(--first-y, var(--left-wing-first-y)),
+        var(--second-x, var(--left-wing-second-x)) var(--second-y, var(--left-wing-second-y)),
+        var(--third-x, var(--left-wing-third-x)) var(--third-y, var(--left-wing-third-y)));
+    clip-path: polygon(var(--first-x, var(--left-wing-first-x)) var(--first-y, var(--left-wing-first-y)),
+        var(--second-x, var(--left-wing-second-x)) var(--second-y, var(--left-wing-second-y)),
+        var(--third-x, var(--left-wing-third-x)) var(--third-y, var(--left-wing-third-y)));
   }
+
   .newsletter-form button .plane .left:after {
     --part-x: 0;
     --z-index: 1;
@@ -183,6 +185,7 @@
     --third-x: var(--left-body-third-x);
     --third-y: var(--left-body-third-y);
   }
+
   .newsletter-form button .plane .right:before {
     --part-x: -0.25%;
     --z-index: 2;
@@ -194,6 +197,7 @@
     --third-x: var(--right-wing-third-x);
     --third-y: var(--right-wing-third-y);
   }
+
   .newsletter-form button .plane .right:after {
     --part-x: 0;
     --z-index: 1;
@@ -205,6 +209,7 @@
     --third-x: var(--right-body-third-x);
     --third-y: var(--right-body-third-y);
   }
+
   .newsletter-form button .trails {
     display: block;
     width: 33px;
@@ -219,12 +224,14 @@
     stroke-dashoffset: var(--trails-stroke);
     transform: rotate(68deg) translateZ(0);
   }
+
   .newsletter-form button span {
     display: block;
     position: relative;
     z-index: 4;
     opacity: var(--text-opacity);
   }
+
   .newsletter-form button span.success {
     z-index: 0;
     position: absolute;
@@ -235,6 +242,7 @@
     opacity: var(--success-opacity);
     color: var(--success);
   }
+
   .newsletter-form button span.success svg {
     display: inline-block;
     vertical-align: top;
@@ -249,4 +257,55 @@
     stroke: var(--success);
     stroke-dashoffset: var(--success-stroke);
   }
+}
+
+
+.author-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  margin: 10px;
+  padding: 0.3rem;
+  max-width: 300px;
+  text-align: left;
+}
+
+.card:hover {
+  background-color: #fff;
+  /* Change the background color on hover */
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.image {
+  width: 100%;
+  max-height: 200px;
+  /* Set the maximum height for the image */
+  object-fit: cover;
+  /* Maintain aspect ratio and cover the container */
+}
+
+.details {
+  margin-top: 10px;
+}
+
+.data {
+  font-size: 10px;
+}
+
+.title {
+  margin-top: 10px;
+}
+
+.description {
+  margin-top: 10px;
+  color: #555;
 }

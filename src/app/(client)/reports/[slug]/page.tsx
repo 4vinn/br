@@ -31,62 +31,7 @@ const RPage = () => {
 
           <div className="pt-3">
             <ul className="table-of-contents">
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as1" className="ml-2 text-[#28281e80]">
-                    as1
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as2" className="ml-2 text-[#28281e80]">
-                    as2
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as3" className="ml-2 text-[#28281e80]">
-                    as3
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as4" className="ml-2 text-[#28281e80]">
-                    as4
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as5" className="ml-2 text-[#28281e80]">
-                    as5
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as6" className="ml-2 text-[#28281e80]">
-                    as6
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as7" className="ml-2 text-[#28281e80]">
-                    as7
-                  </a>
-                </div>
-              </li>
+
             </ul>
           </div>
         </div>
