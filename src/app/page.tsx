@@ -27,22 +27,22 @@ export default function Home() {
     };
   }, []);
 
-  const plane = useRef(null!);
+  const plane = useRef<any>(null!);
   const maxRotate = 20;
 
-  const manageMouseMove = (e: MouseEvent<HTMLDivElement, MouseEvent>) => {
+  const manageMouseMove = (e : any) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
     const perspective = window.innerWidth * 4;
     const rotateX = maxRotate * x - maxRotate / 2;
     const rotateY = (maxRotate * y - maxRotate / 2) * -1;
-    plane!.current!.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
+    plane.current.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
   };
 
   const Earth = dynamic(() => import("@/components/Earth"), {
     ssr: false,
 
-    loading: () => <img src="/as.png"></img>,
+    loading: () => <Image src="/as.png" alt="earth" width={300} height={300}/>,
   });
 
   return (
@@ -145,11 +145,9 @@ export default function Home() {
           </div>
           <div className=" sm:w-[90vw] md:w-[80vw] lg:w-[50vw]">
             <iframe
-              // width="960"
-              // height="540"
               className="w-full aspect-video"
               loading="lazy"
-              srcdoc="<style>
+              srcDoc={`<style>
                 * {
                 padding: 0;
                 margin: 0;
@@ -183,8 +181,7 @@ export default function Home() {
               <a href='https://www.youtube.com/embed/dQw4w9WgXcQ?si=beUyA_jrSpSmuh7p?autoplay=1'>
                 <img src='https://i.ytimg.com/vi/dQw4w9WgXcQ/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDRxusbm2_TGTnDWEIhBTYW2cUQkw' alt='youtube video'>
                 <svg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 24 24' fill='none' stroke='#ffffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='feather feather-play-circle'><circle cx='12' cy='12' r='10'></circle><polygon points='10 8 16 12 10 16 10 8'></polygon></svg>
-              </a>
-              "
+              </a>`}
               src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=beUyA_jrSpSmuh7p"
               title="YouTube video player"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
