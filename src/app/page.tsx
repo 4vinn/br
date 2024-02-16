@@ -30,7 +30,7 @@ export default function Home() {
   const plane = useRef(null!);
   const maxRotate = 20;
 
-  const manageMouseMove = (e) => {
+  const manageMouseMove = (e : any) => {
     const x = e.clientX / window.innerWidth;
     const y = e.clientY / window.innerHeight;
     const perspective = window.innerWidth * 4;
