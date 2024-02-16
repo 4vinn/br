@@ -2,8 +2,8 @@
 import Link from "next/link";
 import Image from "next/image";
 import Typed from "typed.js";
-import Newsletter from "@/components/Newsletter";
-import Card from "@/components/Card";
+import Newsletter from "../components/Newsletter";
+import Card from "../components/Card";
 import Spline from "@splinetool/react-spline";
 import { MouseEvent, useEffect, useRef } from "react";
 import Sectors from "@/components/Service";
@@ -36,7 +36,7 @@ export default function Home() {
     const perspective = window.innerWidth * 4;
     const rotateX = maxRotate * x - maxRotate / 2;
     const rotateY = (maxRotate * y - maxRotate / 2) * -1;
-    plane.current.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
+    plane!.current!.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
   };
 
   const Earth = dynamic(() => import("@/components/Earth"), {
@@ -279,6 +279,7 @@ export default function Home() {
                     <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#bb0000] group-hover:ml-4 transition-all ease-out duration-300">
                       We talk to you every day.
                     </h2>
+                    <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
                     <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
                       Your success is our priority. We keep you informed with
                       timely insights and guidance, ensuring youre prepared to
