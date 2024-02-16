@@ -87,7 +87,7 @@ const Footer = () => {
             <b>DISCLAIMER:</b> The reports we publish at BlackRabbit is for
             research purposes only and not financial advice. Confirm information
             independently. Bitcoin and digital assets are risky—never invest
-            more than you're willing to lose. Do your own research; this report
+            more than youre willing to lose. Do your own research; this report
             is for education, not investment decisions. Not financial or
             investment advice. Any capital-related decisions you make are your
             full responsibility.
