@@ -6,7 +6,7 @@ import Newsletter from "../components/Newsletter";
 import Card from "../components/Card";
 import Spline from "@splinetool/react-spline";
 import { MouseEvent, useEffect, useRef } from "react";
-import Sectors from "@/components/Service";
+import Sectors from "@/components/Sectors";
 import dynamic from "next/dynamic";
 export default function Home() {
   const el = useRef(null);
