@@ -280,7 +280,6 @@ export default function Home() {
                       We talk to you every day.
                     </h2>
                     <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
-                    <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
                       Your success is our priority. We keep you informed with
                       timely insights and guidance, ensuring youre prepared to
                       seize opportunities as they arise. With us, youre never
