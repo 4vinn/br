@@ -27,7 +27,7 @@ export default function Home() {
     };
   }, []);
 
-  const plane = useRef(null!);
+  const plane = useRef<any>(null!);
   const maxRotate = 20;
 
   const manageMouseMove = (e : any) => {
