@@ -56,10 +56,10 @@ export default function Home() {
           />
         </div> */}
 
-        <div className="3d absolute ml-[65vw] mt-[13vh] z-10 w-[30rem] h-[30rem]">
+        <div className="3d absolute ml-[65vw] mt-[10vh] z-10 w-[28rem] h-[28rem]">
           <Earth />
         </div>
-        <div className="bganimateR h-[120vh] w-[90vw] absolute -z-[1] right-[0]  -top-[4rem] overflow-hidden">
+        <div className="bganimateR h-[120vh] w-[90vw] absolute -z-[1] right-[0] -top-[4rem] overflow-hidden">
           <Image
             layout="responsive"
             src="https://architectpartners.com/wp-content/uploads/2022/11/Graphic-main-02.svg"
@@ -211,7 +211,7 @@ export default function Home() {
               className="grid grid-cols-3 h-full"
             >
               <div className=" mx-3 lg:pr-10 lg:pl-10 text-left">
-                <div className="group py-10 pb-3 mt-5 h-4/6 relative rounded-[2rem] bg-black hover:bg-[springgreen] hover:shadow-[0px_0px_110px_7.5px_rgb(0,248,56,.58)] hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
+                <div className="group py-3 mt-5 h-4/6 relative rounded-[2rem] bg-black hover:bg-[#ff5858]  hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
                   {/* <div className="image">
                     <Image
                       src="/logo11.png"
@@ -221,13 +221,13 @@ export default function Home() {
                     />
                   </div> */}
                   <div className="px-7 mt-20">
-                    <h1 className="text-3xl font-bold text-white group-hover:text-[#079007] transition ease-out duration-300">
+                    <h1 className="text-3xl font-bold text-white group-hover:text-[#ca0000] transition ease-out duration-300">
                       01.
                     </h1>
-                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#079007] group-hover:ml-4 transition-all ease-out duration-300">
+                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#ca0000] group-hover:ml-4 transition-all ease-out duration-300">
                       To educate.
                     </h2>
-                    <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
+                    <p className="mt-2 opacity-60 text-white group-hover:text-black group-hover:opacity-100 ">
                       At BlackRabbit Research, we prioritize your journey to
                       knowledge. Explore the realm of digital assets with us and
                       master the art of crafting a robust, diversified portfolio
@@ -237,7 +237,7 @@ export default function Home() {
                 </div>
               </div>
               <div className=" mx-3 lg:pr-10 lg:pl-10 text-left ">
-                <div className="group py-10  pb-3 mt-32 h-4/6 relative rounded-[2rem] bg-black  hover:bg-[#146ef5] hover:shadow-[0px_0px_110px_7.5px_rgba(21,115,255,0.6)] hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
+                <div className="group py-3 mt-32 h-4/6 relative rounded-[2rem] bg-black  hover:bg-[#cfff24]  hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
                   {/* <div className="image">
                     <Image
                       src="https://i.ibb.co/JB4GWMJ/pngegg-1.png"
@@ -247,13 +247,13 @@ export default function Home() {
                     />
                   </div> */}
                   <div className="px-7 mt-20">
-                    <h1 className="text-3xl font-bold text-white group-hover:text-[#0000dd] transition ease-out duration-300">
+                    <h1 className="text-3xl font-bold text-white group-hover:text-[#75c200] transition ease-out duration-300">
                       02.
                     </h1>
-                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#0000dd] group-hover:ml-4 transition-all ease-out duration-300">
+                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#75c200] group-hover:ml-4 transition-all ease-out duration-300">
                       Letting our winners run.
                     </h2>
-                    <p className="mt-2  opacity-60 text-white group-hover:opacity-100 ">
+                    <p className="mt-2  opacity-60 text-white group-hover:text-black group-hover:opacity-100 ">
                       Identifying excellence is just the beginning. We invest in
                       promising protocols, adopting a patient approach to
                       nurture their potential over time. Our strategy is simple:
@@ -263,7 +263,7 @@ export default function Home() {
                 </div>
               </div>
               <div className=" mx-3 lg:pr-10 lg:pl-10 text-left">
-                <div className="group py-10 pb-3 mt-72 h-4/6 relative rounded-[2rem] bg-black  hover:bg-[orangered] hover:shadow-[0px_0px_110px_8.5px_rgba(255,0,0,0.4)] hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
+                <div className="group py-3 mt-72 h-4/6 relative rounded-[2rem] bg-black  hover:bg-[#ffe13f]  hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
                   {/* <div className="image">
                     <Image
                       src="https://i.ibb.co/MgnH44p/pngegg-2.png"
@@ -273,14 +273,13 @@ export default function Home() {
                     />
                   </div> */}
                   <div className="px-7 mt-20">
-                    <h1 className="text-3xl font-bold text-white group-hover:text-[#bb0000] transition ease-out duration-300">
+                    <h1 className="text-3xl font-bold text-white group-hover:text-[#d2a51e] transition ease-out duration-300">
                       03.
                     </h1>
-                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#bb0000] group-hover:ml-4 transition-all ease-out duration-300">
+                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#d2a51e] group-hover:ml-4 transition-all ease-out duration-300">
                       We talk to you every day.
                     </h2>
-                    <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
-                    <p className="mt-2 opacity-60 text-white group-hover:opacity-100 ">
+                    <p className="mt-2 opacity-60 text-white group-hover:text-black group-hover:opacity-100 ">
                       Your success is our priority. We keep you informed with
                       timely insights and guidance, ensuring youre prepared to
                       seize opportunities as they arise. With us, youre never

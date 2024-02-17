@@ -7,15 +7,26 @@ interface Project {
   color: string;
 }
 
+// const projects: Project[] = [
+//   { title: "⪢ AI", color: "#0CBCF0" },
+//   { title: "⪢ RWA", color: "#F0183C" },
+//   { title: "⪢ DeFi", color: "#DCF018" },
+//   { title: "⪢ DePin", color: "#18F0E8" },
+//   { title: "⪢ BRC20", color: "#F0BA18" },
+//   { title: "⪢ Gaming", color: "#8C0CF0" },
+//   { title: "⪢ Infrastructure", color: "#F06318" },
+//   { title: "⪢ Modular Blockchains", color: "#0C34F0" },
+// ];
+
 const projects: Project[] = [
-  { title: "⪢ AI", color: "#0CBCF0" },
-  { title: "⪢ RWA", color: "#F0183C" },
-  { title: "⪢ DeFi", color: "#DCF018" },
-  { title: "⪢ DePin", color: "#18F0E8" },
-  { title: "⪢ BRC20", color: "#F0BA18" },
-  { title: "⪢ Gaming", color: "#8C0CF0" },
-  { title: "⪢ Infrastructure", color: "#F06318" },
-  { title: "⪢ Modular Blockchains", color: "#0C34F0" },
+  { title: "⪢ AI", color: "#000" },
+  { title: "⪢ RWA", color: "#000" },
+  { title: "⪢ DeFi", color: "#000" },
+  { title: "⪢ DePin", color: "#000" },
+  { title: "⪢ BRC20", color: "#000" },
+  { title: "⪢ Gaming", color: "#000" },
+  { title: "⪢ Infrastructure", color: "#000" },
+  { title: "⪢ Modular Blockchains", color: "#000" },
 ];
 
 const Sectors: React.FC = () => {
@@ -24,7 +35,7 @@ const Sectors: React.FC = () => {
     index: number
   ) => {
     gsap.to(e.currentTarget, {
-      top: "-2vw",
+      top: "-1vw",
       backgroundColor: projects[index].color,
       duration: 0.3,
     });
