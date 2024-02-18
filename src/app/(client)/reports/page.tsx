@@ -93,13 +93,18 @@ import Card from "@/components/Card";
 //   );
 // }
 
+//------------------------------------------------------------
+
 import React, { useState } from "react";
 
 function Blog() {
   const [selectedTag, setSelectedTag] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const blogsPerPage = 8;
 
   const handleTagClick = (tag: React.SetStateAction<string>) => {
     setSelectedTag(tag);
+    setCurrentPage(1);
   };
 
   const blogs = [
@@ -223,8 +228,30 @@ function Blog() {
       description:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
     },
+    {
+      imageUrl:
+        "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+      author: "John Doe",
+      date: "February 3, 2024",
+      tag: "NFT",
+      title: "Report 3",
+      description:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    },
     // Add more here
   ];
+
+  const indexOfLastBlog = currentPage * blogsPerPage;
+  const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
+  const currentBlogs = blogs
+    .filter((blog: { tag: string }) => {
+      return selectedTag === "all" || blog.tag === selectedTag;
+    })
+    .slice(indexOfFirstBlog, indexOfLastBlog);
+
+  const paginate = (pageNumber: React.SetStateAction<number>) => {
+    setCurrentPage(pageNumber);
+  };
 
   return (
     <div>
@@ -237,7 +264,7 @@ function Blog() {
               className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
                 selectedTag === "all"
                   ? "bg-black text-[white] border-black"
-                  : "bg-transparent text-black border hover:border-black hover:-skew-x-12 hover:text-black"
+                  : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
               }
               }`}
               onClick={() => handleTagClick("all")}
@@ -248,7 +275,7 @@ function Blog() {
               className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
                 selectedTag === "Airdrop"
                   ? "bg-black text-[white] border-black"
-                  : "bg-transparent text-black border hover:border-black hover:-skew-x-12 hover:text-black"
+                  : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
               }
               }`}
               onClick={() => handleTagClick("Airdrop")}
@@ -259,7 +286,7 @@ function Blog() {
               className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
                 selectedTag === "Blockchain"
                   ? "bg-black text-[white] border-black"
-                  : "bg-transparent text-black border hover:border-black hover:-skew-x-12 hover:text-black"
+                  : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
               }
               }`}
               onClick={() => handleTagClick("Blockchain")}
@@ -270,7 +297,7 @@ function Blog() {
               className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
                 selectedTag === "NFT"
                   ? "bg-black text-[white] border-black"
-                  : "bg-transparent text-black border hover:border-black hover:-skew-x-12 hover:text-black"
+                  : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
               }
               }`}
               onClick={() => handleTagClick("NFT")}
@@ -281,7 +308,7 @@ function Blog() {
               className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
                 selectedTag === "Technology"
                   ? "bg-black text-[white] border-black"
-                  : "bg-transparent text-black border hover:border-black hover:-skew-x-12 hover:text-black"
+                  : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
               }
               }`}
               onClick={() => handleTagClick("Technology")}
@@ -290,117 +317,54 @@ function Blog() {
             </button>
           </div>
         </div>
-        {/* filtered reports */}
+        {/* Displayingg filtered blogs */}
         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
-          {blogs.map((blog, index) => {
-            if (selectedTag === "all" || blog.tag === selectedTag) {
-              return (
-                <Card
-                  key={index}
-                  imageUrl={blog.imageUrl}
-                  author={blog.author}
-                  date={blog.date}
-                  tag={blog.tag}
-                  title={blog.title}
-                  description={blog.description}
-                />
-              );
-            } else {
-              return null;
-            }
-          })}
+          {currentBlogs.map(
+            (
+              blog: {
+                imageUrl: string;
+                author: string;
+                date: string;
+                tag: string;
+                title: string;
+                description: string;
+              },
+              index: React.Key | null | undefined
+            ) => (
+              <Card
+                key={index}
+                imageUrl={blog.imageUrl}
+                author={blog.author}
+                date={blog.date}
+                tag={blog.tag}
+                title={blog.title}
+                description={blog.description}
+              />
+            )
+          )}
         </div>
-        {/* pagination */}
+        {/* Pagination */}
+        <div className="flex justify-center my-4">
+          {Array.from(
+            { length: Math.ceil(blogs.length / blogsPerPage) },
+            (_, i) => (
+              <button
+                key={i}
+                onClick={() => paginate(i + 1)}
+                className={`mx-1 px-3 py-1 ${
+                  currentPage === i + 1
+                    ? "bg-black text-white border-2 border-black"
+                    : " text-[grey] border-2 border-grey"
+                }`}
+              >
+                {i + 1}
+              </button>
+            )
+          )}
+        </div>
       </div>
     </div>
   );
 }
 
 export default Blog;
-
-//pagination code-------------------
-// import React, { useState } from "react";
-
-// function Blog() {
-//   const [selectedTag, setSelectedTag] = useState("all");
-//   const [currentPage, setCurrentPage] = useState(1);
-//   const blogsPerPage = 8;
-
-//   const handleTagClick = (tag: React.SetStateAction<string>) => {
-//     setSelectedTag(tag);
-//     setCurrentPage(1); // Reset current page when a new tag is selected
-//   };
-
-//   const indexOfLastBlog = currentPage * blogsPerPage;
-//   const indexOfFirstBlog = indexOfLastBlog - blogsPerPage;
-//   const currentBlogs = blogs
-//     .filter((blog: { tag: string }) => {
-//       return selectedTag === "all" || blog.tag === selectedTag;
-//     })
-//     .slice(indexOfFirstBlog, indexOfLastBlog);
-
-//   const paginate = (pageNumber: React.SetStateAction<number>) => {
-//     setCurrentPage(pageNumber);
-//   };
-
-//   return (
-//     <div>
-//       <div className="flex flex-col w-[84vw] m-auto">
-//         <div className="flex flex-row justify-between items-center py-5">
-//           <h2 className="text-[28px] font-bold">Reports</h2>
-//           <div className="flex mb-4  mt-[1vw]">
-//             {/* Filter buttons */}
-//             {/* Your filter buttons code goes here */}
-//           </div>
-//         </div>
-//         {/* Display filtered blogs */}
-//         <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
-//           {currentBlogs.map(
-//             (
-//               blog: {
-//                 imageUrl: string;
-//                 author: string;
-//                 date: string;
-//                 tag: string;
-//                 title: string;
-//                 description: string;
-//               },
-//               index: React.Key | null | undefined
-//             ) => (
-//               <Card
-//                 key={index}
-//                 imageUrl={blog.imageUrl}
-//                 author={blog.author}
-//                 date={blog.date}
-//                 tag={blog.tag}
-//                 title={blog.title}
-//                 description={blog.description}
-//               />
-//             )
-//           )}
-//         </div>
-//         {/* Pagination */}
-//         <div className="flex justify-center my-4">
-//           {Array.from(
-//             { length: Math.ceil(blogs.length / blogsPerPage) },
-//             (_, i) => (
-//               <button
-//                 key={i}
-//                 onClick={() => paginate(i + 1)}
-//                 className={`mx-1 px-3 py-1 rounded-full ${
-//                   currentPage === i + 1
-//                     ? "bg-black text-white"
-//                     : "bg-gray-300 text-black"
-//                 }`}
-//               >
-//                 {i + 1}
-//               </button>
-//             )
-//           )}
-//         </div>
-//       </div>
-//     </div>
-//   );
-// }
-
-// export default Blog;
