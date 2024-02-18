@@ -2,6 +2,19 @@
 import Card from "@/components/Card";
 
 // export default function Reports() {
+//   const [reports, SetReports] = useState<any[]>([]);
+//   useEffect(() => {
+//     axios.post('/api/blog', {
+//       is_report: true,
+//     }).then((response) => {
+//       if (response.data.code === 0) {
+//         console.log(response.data.code);
+//         SetReports(response.data.data);
+//       }
+//     }).catch((error) => {
+//       console.log(error.message);
+//     })
+//   }, [])
 //   return (
 //     <div>
 //       <div className="flex flex-col ">
@@ -304,6 +317,8 @@ function Blog() {
 }
 
 export default Blog;
+
+//pagination code-------------------
 // import React, { useState } from "react";
 
 // function Blog() {
