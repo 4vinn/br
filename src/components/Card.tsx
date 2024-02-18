@@ -1,5 +1,8 @@
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 
 interface CardProps {
   imageUrl: string;
@@ -8,6 +11,7 @@ interface CardProps {
   tag: string;
   title: string;
   description: string;
+  slug?: string;
 }
 
 const Card: React.FC<CardProps> = ({
@@ -17,11 +21,25 @@ const Card: React.FC<CardProps> = ({
   tag,
   title,
   description,
+  slug,
 }) => {
+  const router = useRouter();
+  const pathname = usePathname();
   return (
-    <div className="card transform transition-all ease-in hover:scale-[1.025] hover:shadow-lg">
+    <div
+      className="card transform transition-all ease-in hover:scale-[1.025] hover:shadow-lg"
+      onClick={() => {
+        router.push(`${pathname}/${slug}`);
+      }}
+    >
       <Link href="/reports/xyz">
-        <img src={imageUrl} alt="Card Image" className="card-image " />
+        <Image
+          src={imageUrl}
+          alt="Card Image"
+          className="card-image"
+          width={300}
+          height={200}
+        />
       </Link>
 
       <div className="card-info py-[.5rem]">
