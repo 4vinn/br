@@ -1,10 +1,25 @@
 "use client";
 import Image from "next/image";
-import React, { useState, useRef, useMemo } from "react";
-import JoditEditor from "jodit-react";
+import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import axios from "axios";
 
 const RPage = () => {
-  const [content, setContent] = useState("");
+  const pathname = usePathname();
+  const slug = pathname.split("/")[2];
+  const [report, setReport] = useState<any>({});
+
+  useEffect(() => {
+    axios.post("/api/blog", {
+      is_report: true,
+      slug: slug
+    }).then((res) => {
+      setReport(res.data.data[0]);
+    }).catch((error: any) => {
+      console.log(error);
+    })
+  }, [slug])
+
 
   return (
     <div className="w-full">
@@ -16,69 +31,14 @@ const RPage = () => {
 
           <div className="pt-3">
             <ul className="table-of-contents">
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as1" className="ml-2 text-[#28281e80]">
-                    as1
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as2" className="ml-2 text-[#28281e80]">
-                    as2
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as3" className="ml-2 text-[#28281e80]">
-                    as3
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as4" className="ml-2 text-[#28281e80]">
-                    as4
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as5" className="ml-2 text-[#28281e80]">
-                    as5
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as6" className="ml-2 text-[#28281e80]">
-                    as6
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as7" className="ml-2 text-[#28281e80]">
-                    as7
-                  </a>
-                </div>
-              </li>
+
             </ul>
           </div>
         </div>
 
         <div className="post pt-5 w-[60vw] pl-[3.25rem]">
           <div className="flex flex-col items-start">
-            {/* <Image
+            <Image
               className=""
               src="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="thumbnail"
@@ -97,33 +57,7 @@ const RPage = () => {
                 #Tag
               </span>
             </div>
-
-            <div className="Description">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
-              earum architecto saepe id nostrum voluptatibus veniam soluta quia
-              beatae minus, doloribus aperiam dignissimos iste, deleniti
-              veritatis qui hic expedita iure. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Quam earum architecto saepe id
-              nostrum voluptatibus veniam soluta quia beatae minus, doloribus
-              aperiam dignissimos iste, deleniti veritatis qui hic expedita
-              iure.Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Quam earum architecto saepe id nostrum voluptatibus veniam soluta
-              quia beatae minus, doloribus aperiam dignissimos iste, deleniti
-              veritatis qui hic expedita iure.Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Quam earum architecto saepe id
-              nostrum voluptatibus veniam soluta quia beatae minus, doloribus
-              aperiam dignissimos iste, deleniti veritatis qui hic expedita
-              iure. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Quam earum architecto saepe id nostrum voluptatibus veniam soluta
-              quia beatae minus, doloribus aperiam dignissimos iste, deleniti
-              veritatis qui hic expedita iure. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Quam earum architecto saepe id
-              nostrum voluptatibus veniam soluta quia beatae minus, doloribus
-              aperiam dignissimos iste, deleniti veritatis qui hic expedita
-              iure.
-            </div> */}
-
-            {content}
+            {<div dangerouslySetInnerHTML={{ __html: report.content }} />}
           </div>
         </div>
       </div>
