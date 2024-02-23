@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
             time_of_reading: res.get('tor'),
             tags: res.get('tags')?.toString().split(','),
             author: res.get('author'),
-            is_report: false
+            is_report: res.get('is_report')
         }
         const reqBody = AddBlogSchema.safeParse(toParse);
         if (!reqBody.success) {

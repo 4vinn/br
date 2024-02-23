@@ -20,7 +20,7 @@ export default function Home() {
         is_report: is_report,
         recent: true,
       })
-      if (response.data.code) {
+      if (response.data.code===0) {
         if (is_report) {
           setRecentReports(response.data.data);
         }

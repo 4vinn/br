@@ -8,7 +8,7 @@ interface CardProps {
   imageUrl: string;
   author: string;
   date: string;
-  tag: string;
+  tag: any[];
   title: string;
   slug?: string;
 }
@@ -47,12 +47,11 @@ const Card: React.FC<CardProps> = ({
           {title}
         </h2>
         <div className="tags flex flex-wrap">
-          <span className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] ">
-            #{tag}
-          </span>
-          <span className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] ">
-            #{tag}
-          </span>
+          {tag.map((tagname, index) => {
+            return <span key={index} className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] ">
+              {tagname.name}
+            </span>
+          })}
         </div>
       </div>
 

@@ -36,6 +36,7 @@ const BlogPostForm = () => {
         tor: values.tor,
         author: values.authorName,
         tags: values.tags,
+        is_report : values.report
       }
       const formData = new FormData();
       for (const [key, value] of Object.entries(dataObject)) {
@@ -86,6 +87,12 @@ const BlogPostForm = () => {
             <Select mode="multiple">
               <Select.Option value="technology">Technology</Select.Option>
               <Select.Option value="design">Design</Select.Option>
+            </Select>
+          </Form.Item>
+          <Form.Item label="Report" name="report" className='w-full' rules={[{ required: true }]}>
+            <Select>
+              <Select.Option value={true}>True</Select.Option>
+              <Select.Option value={false}>False</Select.Option>
             </Select>
           </Form.Item>
           <Form.Item label="Time of reading" name="tor" rules={[{ required: true }]} className='w-full'>
