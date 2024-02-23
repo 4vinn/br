@@ -10,7 +10,6 @@ interface CardProps {
   date: string;
   tag: string;
   title: string;
-  description: string;
   slug?: string;
 }
 
@@ -20,52 +19,38 @@ const Card: React.FC<CardProps> = ({
   date,
   tag,
   title,
-  description,
   slug,
 }) => {
   const router = useRouter();
   const pathname = usePathname();
   return (
     <div
-      className="card transform transition-all ease-in hover:scale-[1.025] hover:shadow-lg"
+      className="card transform transition-all ease-in hover:scale-[1.025] hover:shadow-lg min-h-[350px]"
       onClick={() => {
         router.push(`${pathname}/${slug}`);
       }}
     >
-      <Link href="/reports/xyz">
-        <Image
-          src={imageUrl}
-          alt="Card Image"
-          className="card-image"
-          width={300}
-          height={200}
-        />
-      </Link>
+      <Image
+        src={imageUrl}
+        alt="Card Image"
+        className="card-image"
+        width={300}
+        height={200}
+      />
 
       <div className="card-info py-[.5rem]">
         <div className="meta flex justify-between text-[.75rem] text-[#28281e] border-b-[1px] pb-[.5rem]">
           <span>{author}</span>
           <span>{date}</span>
         </div>
-        <Link href="/reports/xyz">
-          <h2 className="card-title pt-[.4rem] text-lg font-bold mb-1">
-            {title}
-          </h2>
-          <p className="card-description text-sm text-gray-500  mb-3">
-            {description}
-          </p>
-        </Link>
+        <h2 className="card-title pt-[.4rem] text-lg font-bold mb-1">
+          {title}
+        </h2>
         <div className="tags flex flex-wrap">
-          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9] ">
+          <span className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] ">
             #{tag}
           </span>
-          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9] ">
-            #{tag}
-          </span>
-          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9] ">
-            #{tag}
-          </span>
-          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9]">
+          <span className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] ">
             #{tag}
           </span>
         </div>

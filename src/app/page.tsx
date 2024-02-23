@@ -4,13 +4,38 @@ import Image from "next/image";
 import Typed from "typed.js";
 import Newsletter from "../components/Newsletter";
 import Card from "../components/Card";
-import React, { MouseEvent, useEffect, useRef } from "react";
+import React, { MouseEvent, useEffect, useRef, useState } from "react";
 import Sectors from "@/components/Sectors";
 import dynamic from "next/dynamic";
+import axios from "axios";
 export default function Home() {
   const el = useRef(null);
+  const [recentBlogs, setRecentBlogs] = useState<any>([]);
+  const [recentReports, setRecentReports] = useState<any>([]);
+
+
+  const fetchData = async (is_report: boolean) => {
+    try {
+      const response = await axios.post("/api/blog", {
+        is_report: is_report,
+        recent: true,
+      })
+      if (response.data.code) {
+        if (is_report) {
+          setRecentReports(response.data.data);
+        }
+        else {
+          setRecentBlogs(response.data.data);
+        }
+      }
+    } catch (error: any) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
+
+
     const typed = new Typed(el.current, {
       strings: ["DeFi.", "DePin.", "RWA.", "Gaming.", "BRC20.", "AI."],
       typeSpeed: 50,
@@ -20,16 +45,23 @@ export default function Home() {
       showCursor: true,
     });
 
+    fetchData(true);
+    fetchData(false);
+
     // Destroying
     return () => {
       typed.destroy();
     };
+
   }, []);
 
   const Earth = dynamic(() => import("@/components/Earth"), {
     ssr: false,
-    loading: () => <img src="/as.png" alt="earth" />,
+    loading: () => <Image src="/as.png" alt="earth" width={300} height={300} />,
   });
+
+
+
 
   return (
     <main>
@@ -430,41 +462,19 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
-
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Lorem ipsum dolor sit amet"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
-
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Report 3"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
-
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Report 4"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
+            {recentReports.map((item: any) => {
+              return <Card
+                key={item.slug}
+                imageUrl={item.thumbnail.data}
+                author={item.author}
+                date={item.published}
+                tag={item.tags}
+                title={item.title}
+              />
+            })}
+          </div>
+          <div>
+            {recentReports.length === 0 && <div className="text-xl font-semibold w-fit">You will soon get the reports live here...</div>}
           </div>
         </div>
         {/* --------------------------blogs---------------------------- */}
@@ -497,41 +507,19 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Blog 1"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
-
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Blog 2"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
-
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Blog 3"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
-
-            <Card
-              imageUrl="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              author="John Doe"
-              date="February 3, 2024"
-              tag="Technology"
-              title="Blog 4"
-              description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-            />
+            {recentBlogs.map((item: any) => {
+              return <Card
+                key={item.slug}
+                imageUrl={item.thumbnail.data}
+                author={item.author}
+                date={item.published}
+                tag={item.tags}
+                title={item.title}
+              />
+            })}
+          </div>
+          <div>
+            {recentBlogs.length === 0 && <div className="text-xl font-semibold w-fit">You will soon get the blogs live here...</div>}
           </div>
         </div>
       </div>
