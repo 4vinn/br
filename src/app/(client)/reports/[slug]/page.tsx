@@ -152,4 +152,4 @@ const RPage = () => {
   );
 };
 
-export default RPage;
+export default BPage;
