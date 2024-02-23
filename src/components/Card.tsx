@@ -46,9 +46,6 @@ const Card: React.FC<CardProps> = ({
         <div className="meta flex justify-between text-[.75rem] text-[#28281e] border-b-[1px] pb-[.5rem]">
           <span>{author}</span>
           <span>{date}</span>
-          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] text-[.7rem] border border-[#55ee6ac9]">
-            #{tag}
-          </span>
         </div>
         <Link href="/reports/xyz">
           <h2 className="card-title pt-[.4rem] text-lg font-bold mb-1">
@@ -58,6 +55,20 @@ const Card: React.FC<CardProps> = ({
             {description}
           </p>
         </Link>
+        <div className="tags flex flex-wrap">
+          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9] ">
+            #{tag}
+          </span>
+          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9] ">
+            #{tag}
+          </span>
+          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9] ">
+            #{tag}
+          </span>
+          <span className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[.7rem] border border-[#55ee6ac9]">
+            #{tag}
+          </span>
+        </div>
       </div>
 
       <style jsx>{`
