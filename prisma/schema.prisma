@@ -7,47 +7,49 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model blog{
-  id           Int       @id @default(autoincrement()) 
-  slug         String    @unique
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  title        String    
-  content      String
-  published    DateTime  
-  tor          String     //time of reading
-  thumbnail    image     @relation(fields: [image_id], references: [id])
-  image_id     Int       
-  author       String     
-  tags         tag[]
-  posted_by    admin     @relation(fields: [admin_id],references: [id])       
-  admin_id     Int
-  is_report    Boolean   @default(false)
+model blog {
+  id        Int      @id @default(autoincrement())
+  slug      String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  title     String
+  published DateTime
+  tor       String
+  author    String
+  admin_id  Int
+  is_report Boolean  @default(false)
+  image_id  Int
+  content   String
+  posted_by admin    @relation(fields: [admin_id], references: [id])
+  thumbnail image    @relation(fields: [image_id], references: [id])
+  tags      tag[]    @relation("blogTotag")
+
+  @@index([admin_id], map: "blog_admin_id_fkey")
+  @@index([image_id], map: "blog_image_id_fkey")
 }
 
-model tag{
-   id           Int       @id @default(autoincrement())
-   name         String 
-   blogs        blog[]
-   createdAt    DateTime  @default(now())
-   updatedAt    DateTime  @updatedAt
+model tag {
+  id        Int      @id @default(autoincrement())
+  name      String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  blogs     blog[]   @relation("blogTotag")
 }
 
-model image{
-  id           Int       @id @default(autoincrement()) 
-  data         String    
-  blogs        blog[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+model image {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  data      String
+  blogs     blog[]
 }
 
-model admin{
-  id           Int       @id @default(autoincrement())
-  name         String 
-  email        String    @unique
-  password     String
-  blogs        blog[]
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
+model admin {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  blogs     blog[]
 }
-

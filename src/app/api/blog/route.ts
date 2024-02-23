@@ -20,6 +20,51 @@ export async function POST(req: NextRequest) {
         const tags = reqBody.data.tags ? reqBody.data.tags : [];
         const slug = reqBody.data.slug
         const posted_by = reqBody.data.admin_email ? reqBody.data.admin_email : ""
+        const recent = reqBody.data.recent ? true : false
+        let blogs;
+
+
+        if (recent) {
+            blogs = await prismadb.blog.findMany({
+                where: {
+                    is_report: is_report
+                },
+                take: 4,
+                orderBy: {
+                    published: 'desc'
+                },
+                select: {
+                    title: true,
+                    slug: true,
+                    published: true,
+                    tor: true,
+                    is_report: true,
+                    content: true,
+                    author: true,
+                    posted_by: {
+                        select: {
+                            email: true,
+                            name: true,
+                        }
+                    },
+                    tags: {
+                        select: {
+                            name: true,
+                        }
+                    },
+                    thumbnail: {
+                        select: {
+                            data: true,
+                        }
+                    },
+                }
+            })
+            return Response.json({
+                code: 0,
+                message: "Successfully fetched the blogs/Reports",
+                data: blogs
+            })
+        }
 
         const admin_posted = await prismadb.admin.findUnique({
             where: {
@@ -27,7 +72,6 @@ export async function POST(req: NextRequest) {
             }
         })
 
-        let blogs;
         if (slug) {
             blogs = await prismadb.blog.findMany({
                 where: {
@@ -54,7 +98,7 @@ export async function POST(req: NextRequest) {
                     },
                     thumbnail: {
                         select: {
-                            data : true,
+                            data: true,
                         }
                     },
                 }
@@ -202,7 +246,7 @@ export async function POST(req: NextRequest) {
                             },
                             thumbnail: {
                                 select: {
-                                    data : true,
+                                    data: true,
                                 }
                             },
                         }

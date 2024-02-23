@@ -12,7 +12,7 @@
 
 .projectContainer div {
   border-top: 1px solid rgba(228, 228, 228, 0.662);
-  cursor: default;
+  cursor: pointer;
   position: relative;
   margin-bottom: -1.5vw;
   background-color: #f7f7f7;
@@ -28,8 +28,9 @@
   padding-left: 2rem;
   color: rgb(44, 44, 44);
   text-transform: uppercase;
+  transition: all ease-in-out 0.2s;
 }
 .projectContainer div p:hover {
-  transition: all 0.3s;
   color: white;
+  margin-left: 0.5rem;
 }

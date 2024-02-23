@@ -1,12 +1,21 @@
 import prismadb from "@/lib/prismadb";
 import { AddBlogSchema } from "@/types/blogAddType";
 import { generateUniqueSlug } from "@/utils/generateSlug";
+import { uploadR2 } from "@/utils/uploadCloudFlare";
+import axios from "axios";
 import { NextRequest } from "next/server";
 
 export async function POST(req: NextRequest) {
     try {
-        const res = await req.json();
-        const reqBody = AddBlogSchema.safeParse(res);
+        const res = await req.formData();
+        const toParse = {
+            title: res.get('title'),
+            time_of_reading: res.get('tor'),
+            tags: res.get('tags')?.toString().split(','),
+            author: res.get('author'),
+            is_report: res.get('is_report')
+        }
+        const reqBody = AddBlogSchema.safeParse(toParse);
         if (!reqBody.success) {
             return Response.json(
                 {
@@ -18,16 +27,20 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const TokenData = JSON.parse(req.cookies.get("TokenData")?.value!);
-        const admin_id = TokenData.id;
+        // const TokenData = JSON.parse(req.cookies.get("TokenData")?.value!);
+        const admin_id = 2;
 
         const title = reqBody.data.title;
         const tor = reqBody.data.time_of_reading;
-        const tags = reqBody.data.tags;
+        let tags = reqBody.data.tags;
         const author = reqBody.data.author;
         const is_report = reqBody.data.is_report;
-        const thumbnail_image = reqBody.data.thumbnail;
-        const content = reqBody.data.content;
+
+        if (tags.length === 0) {
+            const newArray = [];
+            newArray.push(res.get('tags')!.toString());
+            tags = newArray;
+        }
 
 
         //checking if the same blog exists or not
@@ -35,31 +48,49 @@ export async function POST(req: NextRequest) {
             where: {
                 OR: [
                     { title: title },
-                    { content: content }
                 ]
             }
         });
         if (existingEntry) {
             return Response.json({
                 code: 2,
-                message: "A blog/report with same title/content is already present"
+                message: "A blog/report with same title is already present"
             })
         }
 
-        //checking if the image exists or not and if not then creating a new entry 
-        let imageData = await prismadb.image.findFirst({
-            where: {
-                data: thumbnail_image
+        //uploding the image on cloudflare
+        const data: any = res.get('file');
+        const fileBuffer = await data.arrayBuffer();
+        const fileName = `${title}_image`;
+        let url = `https://pub-41a1a8f32abe4401b1f15c19faba731c.r2.dev/${fileName}`;
+        const imageUploadResponse = await uploadR2(fileBuffer, fileName);
+        if (!imageUploadResponse) {
+            return Response.json({
+                code: 2,
+                message: "Error in image uploading",
+            })
+        }
+
+        const imageData = await prismadb.image.create({
+            data: {
+                data: url
             }
         })
 
-        if (!imageData) {
-            imageData = await prismadb.image.create({
-                data: {
-                    data: thumbnail_image
-                }
+        //uploading the content on cloudflare
+        const blogContent: any = res.get('content');
+        const fileNameContent = `${title}_content`;
+        let ContentUrl = `https://pub-41a1a8f32abe4401b1f15c19faba731c.r2.dev/${fileNameContent}`;
+        const ContentUploadResponse = await uploadR2(blogContent, fileNameContent);
+
+        if (!ContentUploadResponse) {
+            return Response.json({
+                code: 2,
+                message: "Error in content uploading",
             })
         }
+
+        console.log("uploads done");
 
         //fetching the admin details who is posting the blog/report
         const admin = await prismadb.admin.findUnique({
@@ -75,6 +106,8 @@ export async function POST(req: NextRequest) {
             })
         }
 
+        console.log("admin part done");
+
         //fetching tag details
         let tagDetails = await prismadb.tag.findMany({
             where: {
@@ -84,13 +117,13 @@ export async function POST(req: NextRequest) {
             }
         })
 
-
+        console.log("tag part done");
         const uniqueSlug = await generateUniqueSlug(title);
 
         await prismadb.blog.create({
             data: {
                 author: author,
-                content: content,
+                content: ContentUrl,
                 published: new Date(),
                 slug: uniqueSlug,
                 title: title,
@@ -112,7 +145,7 @@ export async function POST(req: NextRequest) {
         return Response.json({
             code: -1,
             message: "Internal Server Error",
-            error: { ...error }
+            error: error.message
         })
     }
 }

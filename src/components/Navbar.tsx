@@ -33,13 +33,13 @@ const Navbar = () => {
                   </div>
                 </Link>
               </li>
-              <li>
+              {/* <li>
                 <Link href="/account">
                   <div className="px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0">
                     ACCOUNT
                   </div>
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </nav>
         </div>

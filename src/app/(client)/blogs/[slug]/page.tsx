@@ -1,131 +1,147 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import axios from "axios";
 import Image from "next/image";
-import React, { useState, useRef, useMemo } from "react";
-import JoditEditor from "jodit-react";
+import Card from "@/components/Card";
 
 const BPage = () => {
-  const [content, setContent] = useState("");
+  const pathname = usePathname();
+  const slug = pathname.split("/")[2];
+  const [blog, setBlog] = useState<any>({});
+  const [blogContent, setBlogContent] = useState<string>("");
+  const [contentHeadings, setContentHeadings] = useState<any>([]);
+  const [recentBlogs, setRecentBlogs] = useState<any[]>([]);
+
+  useEffect(() => {
+    axios
+      .post("/api/blog", {
+        is_report: false,
+        slug: slug,
+      })
+      .then((res) => {
+        console.log(res);
+        setBlog(res.data.data[0]);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, [slug]);
+
+  useEffect(() => {
+    console.log(blog.content);
+    axios
+      .get(blog.content)
+      .then((res1) => {
+        setBlogContent(res1.data);
+      })
+      .catch((error: any) => {
+        console.log(error);
+      });
+  }, [blog]);
+
+  useEffect(() => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(blogContent, "text/html");
+
+    const headings = document.querySelectorAll("h1");
+    const list_of_content_array: any[] = [];
+    for (let x = 0; x < headings.length; x++) {
+      list_of_content_array.push(headings[x].textContent);
+    }
+    setContentHeadings(list_of_content_array);
+  }, [blogContent]);
+
+  // For recommended blogs
+  useEffect(() => {
+    axios
+      .get("/api/blog")
+      .then((res2) => {
+        setRecentBlogs(res2.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="w-full">
       <div className="pl-1 pr-1 w-[84vw] m-auto flex flex-row">
-        <div className="toc mt-5 pt-5 border-[1px] border-solid border-dark text-dark  rounded-lg p-4 sticky top-6 max-h-[80vh] overflow-hidden overflow-y-auto ">
+        <div className="toc mt-5 pt-5 border-[1px] border-solid border-dark text-dark rounded-lg p-4 sticky top-[6rem] max-h-[80vh] overflow-hidden overflow-y-auto ">
           <div className="border-b-[1px] border-[#28281e] w-[20vw] py-2 text-xl font-medium">
             Table of contents
           </div>
-
           <div className="pt-3">
-            <ul className="table-of-contents">
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as1" className="ml-2 text-[#28281e80]">
-                    as1
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as2" className="ml-2 text-[#28281e80]">
-                    as2
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as3" className="ml-2 text-[#28281e80]">
-                    as3
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as4" className="ml-2 text-[#28281e80]">
-                    as4
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as5" className="ml-2 text-[#28281e80]">
-                    as5
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as6" className="ml-2 text-[#28281e80]">
-                    as6
-                  </a>
-                </div>
-              </li>
-              <li>
-                <div className="">
-                  ⪢
-                  <a href="#as7" className="ml-2 text-[#28281e80]">
-                    as7
-                  </a>
-                </div>
-              </li>
+            <ul>
+              {contentHeadings.map((content: any, index: number) => {
+                return (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      document
+                        .querySelectorAll("h1")
+                        [index].scrollIntoView({ behavior: "smooth" });
+                    }}
+                    className="flex justify-start items-center gap-4 cursor-pointer"
+                  >
+                    <div>
+                      {/* <Image src={"/arrow2.png"} alt={"arrow"} width={30} height={40} /> */}
+                      ⪢
+                    </div>
+                    <p>{content}</p>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
 
         <div className="post pt-5 w-[60vw] pl-[3.25rem]">
           <div className="flex flex-col items-start">
-            {/* <Image
-              className=""
-              src="https://images.unsplash.com/photo-1482686115713-0fbcaced6e28?q=80&w=2067&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-              alt="thumbnail"
-              width={400}
-              height={400}
-            ></Image>
-
             <h1 className="text-5xl font-medium py-5 w-full text-left">
-              Some Title for the Blog Post
+              {blog.title}
             </h1>
 
-            <div className="meta w-full flex text-[.8rem] text-[#28281e] border-b-[2px] pb-[.5rem] gap-20">
-              <span>Author</span>
-              <span>Date</span>
-              <span className="text-[#55ee6ac9] px-1 py-[0.1rem] text-[.78rem] border border-[#55ee6ac9]">
-                #Tag
-              </span>
+            <div className="meta w-full items-center flex text-[.8rem] text-[#28281e] border-b-[2px] pb-[.5rem] gap-20">
+              <span>{blog.author}</span>
+              <span>{blog.published}</span>
+              <div className="flex justify-center items-center">
+                {blog.tags?.map((tagname: any, index: number) => {
+                  return (
+                    <span
+                      key={index}
+                      className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] "
+                    >
+                      {tagname.name}
+                    </span>
+                  );
+                })}
+              </div>
             </div>
-
-            <div className="Description">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quam
-              earum architecto saepe id nostrum voluptatibus veniam soluta quia
-              beatae minus, doloribus aperiam dignissimos iste, deleniti
-              veritatis qui hic expedita iure. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Quam earum architecto saepe id
-              nostrum voluptatibus veniam soluta quia beatae minus, doloribus
-              aperiam dignissimos iste, deleniti veritatis qui hic expedita
-              iure.Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Quam earum architecto saepe id nostrum voluptatibus veniam soluta
-              quia beatae minus, doloribus aperiam dignissimos iste, deleniti
-              veritatis qui hic expedita iure.Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Quam earum architecto saepe id
-              nostrum voluptatibus veniam soluta quia beatae minus, doloribus
-              aperiam dignissimos iste, deleniti veritatis qui hic expedita
-              iure. Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-              Quam earum architecto saepe id nostrum voluptatibus veniam soluta
-              quia beatae minus, doloribus aperiam dignissimos iste, deleniti
-              veritatis qui hic expedita iure. Lorem ipsum, dolor sit amet
-              consectetur adipisicing elit. Quam earum architecto saepe id
-              nostrum voluptatibus veniam soluta quia beatae minus, doloribus
-              aperiam dignissimos iste, deleniti veritatis qui hic expedita
-              iure.
-            </div> */}
-
-            {content}
+            {<div dangerouslySetInnerHTML={{ __html: blogContent }}></div>}
           </div>
         </div>
+      </div>
+      <div className="recommended pl-1 pr-1 w-[84vw] m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        {recentBlogs.slice(0, 4).map((item: any) => {
+          return (
+            <Card
+              key={item.slug}
+              imageUrl={item.thumbnail.data}
+              author={item.author}
+              date={item.published}
+              tag={item.tags}
+              title={item.title}
+            />
+          );
+        })}
+      </div>
+      <div className="recommended pl-1 pr-1 w-[84vw] m-auto">
+        {recentBlogs.length === 0 && (
+          <div className="text-xl font-semibold w-fit">
+            You will soon get the blogs live here...
+          </div>
+        )}
       </div>
     </div>
   );
