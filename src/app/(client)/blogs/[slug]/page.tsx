@@ -1,36 +1,14 @@
 "use client";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import axios from "axios";
+import Image from "next/image";
 
 const BPage = () => {
   const pathname = usePathname();
   const slug = pathname.split("/")[2];
   const [blog, setBlog] = useState<any>({});
   const [contentHeadings, setContentHeadings] = useState<any>([]);
-
-  useEffect(() => {
-    axios.post("/api/blog", {
-      is_report: false,
-      slug: slug
-    }).then((res) => {
-      setBlog(res.data.data);
-    }).catch((error: any) => {
-      console.log(error);
-    })
-
-    const headings = document.querySelectorAll('h1');
-    const list_of_content_array: any[] = [];
-    for (let x = 0; x < headings.length; x++) {
-      list_of_content_array.push(
-        <li className="cursor-pointer" key={x} onClick={() => {
-          headings[x].scrollIntoView();
-        }}>{headings[x].textContent}</li>
-      )
-    }
-    setContentHeadings(list_of_content_array);
-  }, [slug])
 
   const variable = `<p><br></p>
   <p dir="ltr" style="line-height:1.38;margin-top:0pt;margin-bottom:0pt;"><strong style="font-weight:normal;" id="docs-internal-guid-9c54bbbc-7fff-6c7f-e254-e62d97f7514a"><span style="font-size:11pt;font-family:Arial,sans-serif;color:#000000;background-color:transparent;font-weight:700;font-style:normal;font-variant:normal;text-decoration:none;vertical-align:baseline;white-space:pre;white-space:pre-wrap;"><span style="border:none;display:inline-block;overflow:hidden;width:602px;height:133px;"><img src="https://lh7-us.googleusercontent.com/GopEZQ1e2k9L9gCi9wRe10ke0MeOFhftvn1Mr2QrdUSg0mWMpNtf6PK4igQVfFAm_eznIRpboeAyJRG2NsHM-MLdLbB1mndu_MEmu6IZYDnVZoeYlVru4flXJFKK6vCTzlyNrsawGUjrHUkMQPa_C9k" width="602" height="133" style="margin-left:0px;margin-top:0px;"></span></span></strong></p>
@@ -78,8 +56,29 @@ const BPage = () => {
       </strong></p><br>
   <p><br></p>`
 
-  const content = document.createElement('div');
-  content.innerHTML = variable;
+  useEffect(() => {
+    axios.post("/api/blog", {
+      is_report: false,
+      slug: slug
+    }).then((res) => {
+      setBlog(res.data.data);
+    }).catch((error: any) => {
+      console.log(error);
+    })
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(variable, 'text/html');
+
+    const headings = doc.querySelectorAll('h1');
+    const subheadings = doc.querySelectorAll('h2');
+    const list_of_content_array: any[] = [];
+    for (let x = 0; x < headings.length; x++) {
+      list_of_content_array.push(
+        headings[x].textContent);
+    }
+    setContentHeadings(list_of_content_array);
+  }, [slug])
+
 
   return (
     <div className="w-full">
@@ -90,8 +89,15 @@ const BPage = () => {
           </div>
           <div className="pt-3">
             <ul>
-              {contentHeadings.map((content: any) => {
-                return content
+              {contentHeadings.map((content: any, index: number) => {
+                return <li key={index} onClick={() => {
+                  document.querySelectorAll('h1')[index].scrollIntoView({ behavior: 'smooth' })
+                }} className="flex justify-start items-center gap-4 cursor-pointer">
+                  <div>
+                    <Image src={"/arrow2.png"} alt={"arrow"} width={30} height={40}/>
+                  </div>
+                  <p>{content}</p>
+                </li>
               })}
             </ul>
           </div>
