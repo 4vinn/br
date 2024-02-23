@@ -16,7 +16,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Airdrop",
+      tag: ["Airdrop"],
       title: "Report 1",
     },
     {
@@ -24,7 +24,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "D. Williams",
       date: "February 3, 2024",
-      tag: "Blockchain",
+      tag: ["Blockchain"],
       title: "Report 2",
     },
     {
@@ -32,7 +32,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "V. Buterin",
       date: "February 3, 2024",
-      tag: "Blockchain",
+      tag: ["Blockchain"],
       title: "Report 3",
     },
     {
@@ -40,7 +40,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Technology",
+      tag: ["Technology"],
       title: "Report 3",
     },
     {
@@ -48,7 +48,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Technology",
+      tag: ["Technology"],
       title: "Report 3",
     },
     {
@@ -56,7 +56,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Technology",
+      tag: ["Technology"],
       title: "Report 3",
     },
     {
@@ -64,7 +64,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Airdrop",
+      tag: ["Airdrop"],
       title: "Report 1",
     },
     {
@@ -72,7 +72,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "D. Williams",
       date: "February 3, 2024",
-      tag: "Blockchain",
+      tag: ["Blockchain"],
       title: "Report 2",
     },
     {
@@ -80,7 +80,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "V. Buterin",
       date: "February 3, 2024",
-      tag: "Blockchain",
+      tag: ["Blockchain"],
       title: "Report 3",
     },
     {
@@ -88,7 +88,7 @@ function Blog() {
         "https://pub-41a1a8f32abe4401b1f15c19faba731c.r2.dev/wallpaper.jpeg",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Technology",
+      tag: ["Technology"],
       title: "Report 3",
     },
     {
@@ -96,7 +96,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Technology",
+      tag: ["Technology"],
       title: "Report 3",
     },
     {
@@ -104,7 +104,7 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "Technology",
+      tag: ["Technology"],
       title: "Report 3",
     },
     {
@@ -112,15 +112,15 @@ function Blog() {
         "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       author: "John Doe",
       date: "February 3, 2024",
-      tag: "NFT",
+      tag: ["NFT"],
       title: "Report 3",
     },
   ];
 
   const currentBlogs = blogs
-    .filter((blog: { tag: string }) => {
-      return selectedTag === "all" || blog.tag === selectedTag;
-    })
+    // .filter((blog: { tag: string[] }) => {
+    //   return selectedTag === "all" || blog.tag === selectedTag;
+    // })
 
   return (
     <div>
@@ -194,7 +194,7 @@ function Blog() {
                 imageUrl: string;
                 author: string;
                 date: string;
-                tag: string;
+                tag: string[];
                 title: string;
               },
               index: React.Key | null | undefined
