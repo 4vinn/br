@@ -4,7 +4,6 @@ import Image from "next/image";
 import Typed from "typed.js";
 import Newsletter from "../components/Newsletter";
 import Card from "../components/Card";
-import Spline from "@splinetool/react-spline";
 import React, { MouseEvent, useEffect, useRef } from "react";
 import Sectors from "@/components/Sectors";
 import dynamic from "next/dynamic";
@@ -27,18 +26,6 @@ export default function Home() {
     };
   }, []);
 
-  const plane = useRef<any>(null!);
-  const maxRotate = 20;
-
-  const manageMouseMove = (e: any) => {
-    const x = e.clientX / window.innerWidth;
-    const y = e.clientY / window.innerHeight;
-    const perspective = window.innerWidth * 4;
-    const rotateX = maxRotate * x - maxRotate / 2;
-    const rotateY = (maxRotate * y - maxRotate / 2) * -1;
-    plane.current.style.transform = `perspective(${perspective}px) rotateX(${rotateY}deg) rotateY(${rotateX}deg)`;
-  };
-
   const Earth = dynamic(() => import("@/components/Earth"), {
     ssr: false,
     loading: () => <img src="/as.png" alt="earth" />,
@@ -48,12 +35,6 @@ export default function Home() {
     <main>
       <div>
         {/* --------------------------Hero---------------------------- */}
-        {/* <div className="spline absolute w-[30px] h-[30px] z-10 ml-[68vw] mt-[40vh] ">
-          <Spline
-            className="w-full flex scale-[.25] sm:scale-[.35] lg:scale-[.25] items-center justify-center md:justify-start"
-            scene="https://prod.spline.design/pvM5sSiYV2ivWraz/scene.splinecode"
-          />
-        </div> */}
 
         <div className="3d absolute ml-[65vw] mt-[10vh] z-10 w-[28rem] h-[28rem]">
           <Earth />
@@ -201,33 +182,31 @@ export default function Home() {
             <h1 className="text-[2.5rem]">OUR PROMISE TO YOU</h1>
           </div>
 
-          <div className="w-[95%] mx-auto  lg:px-10 py-10">
-            <div
-              onMouseMove={(e: React.ChangeEvent<any>) => {
-                console.log("hey");
-                manageMouseMove(e);
-              }}
-              ref={plane}
-              className="grid grid-cols-3 h-full"
-            >
-              <div className=" mx-3 lg:pr-10 lg:pl-10 text-left">
-                <div className="group py-3 mt-5 h-4/6 relative rounded-[2rem] bg-black hover:bg-[#ff5858]  hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
-                  {/* <div className="image">
-                    <Image
-                      src="/logo11.png"
-                      alt="logo"
-                      width={80}
-                      height={80}
-                    />
-                  </div> */}
-                  <div className="px-7 mt-20">
-                    <h1 className="text-3xl font-bold text-white group-hover:text-[#ca0000] transition ease-out duration-300">
+          <div className="w-[84vw] mx-auto  lg:px-1 py-10">
+            <div className="grid grid-cols-3 h-full  ">
+              <div className="mr-6 text-left">
+                <div className="group py-3 bg-black hover:bg-[#3F7575]  hover:-translate-y-[1rem] rounded-[1rem] transition ease-out duration-300">
+                  <div className="image px-[1rem] mt-6 group-hover:px-[2rem] fill-white group-hover:fill-[#D0FF5F] transition-all ease-out duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="80px"
+                      height="80px"
+                      viewBox="0 0 1024 1024"
+                      // fill="#000000"
+                      id="icon"
+                      version="1.1"
+                    >
+                      <path d="M513.147 584.708c-15.947 0-39.468-1.747-61.040-10.031l-172.596-66.501h-84.542v103.565c0 31.84 23.684 67.975 52.884 80.663l208.987 90.967c29.2 12.688 76.605 12.743 105.841 0.127l211.263-91.222c29.218-12.615 52.921-48.697 52.921-80.537v-103.565h-93.298l-152.954 64.48c-18.386 7.773-42.38 12.051-67.466 12.051zM46.313 372.991l416.19 160.363c29.728 11.433 77.605 10.686 106.951-1.693l397.458-167.536v247.18l-24.558 81.938h71.015l-25.413-82.794v-256.319h-0.71c17.167-11.833 13.162-26.596-12.252-35.681l-404.357-143.888c-30.001-10.704-78.479-10.25-108.299 0.946l-415.844 156.449c-29.819 11.214-29.891 29.6-0.182 41.033z" />
+                    </svg>
+                  </div>
+                  <div className="px-7 mt-6">
+                    <h1 className="text-2xl font-bold text-[#e8e8e8] group-hover:text-[#D0FF5F] transition ease-out duration-300">
                       01.
                     </h1>
-                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#ca0000] group-hover:ml-4 transition-all ease-out duration-300">
+                    <h2 className="text-1xl mt-4 font-bold uppercase text-[#e8e8e8] group-hover:text-[#D0FF5F] group-hover:ml-4 transition-all ease-out duration-300">
                       To educate.
                     </h2>
-                    <p className="mt-2 opacity-60 text-white group-hover:text-black group-hover:opacity-100 ">
+                    <p className="my-6  text-[#e1e1e1] opacity-[0.7] group-hover:text-[#D0FF5F]  ">
                       At BlackRabbit Research, we prioritize your journey to
                       knowledge. Explore the realm of digital assets with us and
                       master the art of crafting a robust, diversified portfolio
@@ -236,24 +215,34 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className=" mx-3 lg:pr-10 lg:pl-10 text-left ">
-                <div className="group py-3 mt-32 h-4/6 relative rounded-[2rem] bg-black  hover:bg-[#cfff24]  hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
-                  {/* <div className="image">
-                    <Image
-                      src="https://i.ibb.co/JB4GWMJ/pngegg-1.png"
-                      alt="https://www.pngegg.com/en/png-zquqj/download"
-                      width={80}
-                      height={80}
-                    />
-                  </div> */}
-                  <div className="px-7 mt-20">
-                    <h1 className="text-3xl font-bold text-white group-hover:text-[#75c200] transition ease-out duration-300">
+              <div className=" mr-6 text-left ">
+                <div className="group py-3  bg-black  hover:bg-[#0053F5]  hover:-translate-y-[1rem] rounded-[1rem] cursor-default transition ease-out duration-300">
+                  <div className="image px-[1rem] mt-6 group-hover:px-[2rem] fill-white group-hover:fill-[#D7C5AF] transition-all ease-out duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      version="1.1"
+                      id="Capa_1"
+                      width="80px"
+                      height="80px"
+                      viewBox="0 0 440 440"
+                    >
+                      <g>
+                        <g>
+                          <path d="M390.06,362.087h-98.135v-7.937c6.968-4.521,11.397-12.33,11.397-21.01c0-13.82-11.245-25.063-25.067-25.063h-23.63    c5.48-2.007,9.062-7.575,8.311-13.615L248.684,180.32c3.088-4.218,4.985-9.223,4.985-14.816l0.019-71.041    c29.055-11.022,66.911-39.934,71.65-43.6c4.649-3.597,5.502-10.28,1.907-14.929c-3.597-4.648-10.281-5.502-14.93-1.908    c-12.146,9.391-45.337,32.976-67.113,40.899c-0.644-0.299-8.17-3.79-10.636-4.933l-4.719-3.978    c-0.326-0.275-0.802-0.254-1.104,0.045l-7.477,7.437c-0.302,0.31-0.219,0.752-0.219,0.752l1.131,7.098l7.041,50.766    c0.053,0.374-0.054,0.752-0.293,1.043l-7.882,9.632c-0.255,0.314-0.64,0.496-1.047,0.496c-0.406,0-0.791-0.182-1.048-0.496    l-7.88-9.632c-0.241-0.291-0.346-0.669-0.293-1.043l5.509-39.708l2.877-18.083c0,0,0.097-0.532-0.206-0.823l-7.478-7.438    c-0.145-0.147-0.338-0.226-0.532-0.236c-0.005-0.001-0.005-0.005-0.005-0.009l-0.012,0.009c-0.196-0.005-0.393,0.057-0.556,0.191    l-4.675,3.944c-2.391,1.093-9.996,4.57-10.873,4.978c-21.775-7.911-54.994-31.516-67.146-40.911    c-4.65-3.595-11.335-2.741-14.929,1.908c-3.596,4.648-2.742,11.332,1.906,14.929c4.739,3.666,42.595,32.576,71.647,43.6    l0.02,71.041c0,5.594,1.899,10.599,4.986,14.816l-14.248,114.143c-0.751,6.04,2.829,11.607,8.311,13.615H161.74    c-13.821,0-25.067,11.244-25.067,25.062c0,8.682,4.43,16.49,11.397,21.01v7.938H49.938c-13.821,0-25.067,11.244-25.067,25.065    c0,8.493,4.321,17.411,11.397,21.896V440h20.13v-45.26c0,0-11.397-1.006-11.397-7.588c0-2.723,2.215-4.937,4.938-4.937h118.265    V341.25c0,0-11.398-3.1-11.398-8.107c0-2.721,2.217-4.933,4.938-4.933h116.512c2.722,0,4.938,2.212,4.938,4.933    c0,5.008-11.399,8.107-11.399,8.107v40.968h118.267c2.723,0,4.938,2.214,4.938,4.937c0,6.582-11.398,7.588-11.398,7.588V440    h20.132v-30.95c7.074-4.485,11.396-13.403,11.396-21.896C415.127,373.332,403.881,362.087,390.06,362.087z M194.197,308.078    c4.36-1.602,7.697-5.514,8.313-10.438l12.912-103.438c1.537,0.216,3.067,0.329,4.574,0.329c1.508,0,3.04-0.113,4.579-0.329    l12.913,103.438c0.615,4.926,3.953,8.836,8.314,10.438H194.197z" />
+                          <path d="M227.531,360.58h-4.004c-0.786,0-1.562,0.193-2.256,0.566l-11.061,5.92c-1.938,1.036-2.92,3.263-2.38,5.394l0.37,1.459    c0.362,1.429,1.364,2.61,2.713,3.204c1.35,0.593,2.897,0.53,4.195-0.172l4.495-2.425v43.313c0,2.643,2.142,4.783,4.784,4.783    h3.144c2.641,0,4.782-2.142,4.782-4.783v-52.478C232.312,362.72,230.172,360.58,227.531,360.58z" />
+                          <path d="M219.996,65.815c15.57,0,27.188-14.506,27.453-38.832C247.617,10.101,239.58,0,219.996,0    c-19.581,0-27.62,10.101-27.449,26.982C192.811,51.309,204.427,65.815,219.996,65.815z" />
+                        </g>
+                      </g>
+                    </svg>
+                  </div>
+                  <div className="px-7 mt-6">
+                    <h1 className="text-2xl font-bold text-[#e8e8e8] group-hover:text-[#D7C5AF]  transition ease-out duration-300">
                       02.
                     </h1>
-                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#75c200] group-hover:ml-4 transition-all ease-out duration-300">
+                    <h2 className="text-1xl mt-4 font-bold uppercase text-[#e8e8e8] group-hover:text-[#D7C5AF] group-hover:ml-4 transition-all ease-out duration-300">
                       Letting our winners run.
                     </h2>
-                    <p className="mt-2  opacity-60 text-white group-hover:text-black group-hover:opacity-100 ">
+                    <p className="my-6  text-[#e1e1e1] opacity-[0.7] group-hover:text-[#D7C5AF] ">
                       Identifying excellence is just the beginning. We invest in
                       promising protocols, adopting a patient approach to
                       nurture their potential over time. Our strategy is simple:
@@ -262,24 +251,50 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className=" mx-3 lg:pr-10 lg:pl-10 text-left">
-                <div className="group py-3 mt-72 h-4/6 relative rounded-[2rem] bg-black  hover:bg-[#ffe13f]  hover:-translate-y-[1.5rem] cursor-pointer transition ease-out duration-300">
-                  {/* <div className="image">
-                    <Image
-                      src="https://i.ibb.co/MgnH44p/pngegg-2.png"
-                      alt="https://www.pngegg.com/en/png-epwii/download"
-                      width={80}
-                      height={80}
-                    />
-                  </div> */}
-                  <div className="px-7 mt-20">
-                    <h1 className="text-3xl font-bold text-white group-hover:text-[#d2a51e] transition ease-out duration-300">
+              <div className="text-left">
+                <div className="group py-3 bg-black  hover:bg-[#9848FF]  hover:-translate-y-[1rem] rounded-[1rem] cursor-default transition ease-out duration-300">
+                  <div className="image px-[1rem] mt-6 group-hover:px-[2rem] fill-white group-hover:fill-[#CFD7FF] transition-all ease-out duration-300">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      version="1.1"
+                      id="_x31_"
+                      width="80px"
+                      height="80px"
+                      viewBox="0 0 128 128"
+                    >
+                      <g>
+                        <ellipse
+                          transform="matrix(0.9659 -0.2588 0.2588 0.9659 -11.3148 8.9075)"
+                          cx="28.2"
+                          cy="47.4"
+                          rx="7.8"
+                          ry="7.8"
+                        />
+                        <path d="M37.4,97.5h-9.5c0,0-0.5,0-0.9,0c-4.3-0.4-8-3.5-9.1-7.8l-6.5-24.2c-0.4-1.4-1.8-2.1-3-1.8c-1.4,0.4-2.1,1.8-1.8,3   l6.4,24.2c1.7,6.3,7,10.9,13.5,11.4c0.6,0.1,1.3,0.1,1.3,0.1h9.5c1.4,0,2.4-1.1,2.5-2.5C39.8,98.5,38.8,97.5,37.4,97.5z" />
+                        <path d="M48.6,83.9h-13c-0.3-4.9-1.1-9.8-2.3-14.7c-0.1-0.4-0.4-1.4-0.4-1.5c-1.7-6.3-7.7-10.3-14-9.7c0,0-0.8,0.1-1,0.1   c-2.3,0.6-3.7,3-3.1,5.4l6.7,24.9c0.7,2.8,3.1,4.9,6.1,5.1h0.6h15.5v17.8c0,2.7,2.1,4.9,4.9,4.9c2.7,0,4.9-2.1,4.9-4.9V88.8   c0-1.3-0.5-2.5-1.5-3.4C51.1,84.4,49.8,83.9,48.6,83.9z" />
+                      </g>
+                      <g>
+                        <ellipse
+                          transform="matrix(0.2588 -0.9659 0.9659 0.2588 29.3697 133.1303)"
+                          cx="101.4"
+                          cy="47.4"
+                          rx="7.8"
+                          ry="7.8"
+                        />
+                        <path d="M90.2,97.5h9.5c0,0,0.5,0,0.9,0c4.3-0.4,8-3.5,9.1-7.8l6.5-24.2c0.4-1.4,1.8-2.1,3-1.8c1.4,0.4,2.1,1.8,1.8,3l-6.4,24.2   c-1.7,6.3-7,10.9-13.5,11.4c-0.6,0.1-1.3,0.1-1.3,0.1h-9.5c-1.4,0-2.4-1.1-2.5-2.5C87.8,98.5,88.9,97.5,90.2,97.5z" />
+                        <path d="M79,83.9h13c0.3-4.9,1.1-9.8,2.3-14.7c0.1-0.4,0.4-1.4,0.4-1.5c1.7-6.3,7.7-10.3,14-9.7c0,0,0.8,0.1,1,0.1   c2.3,0.6,3.7,3,3.1,5.4L106,88.4c-0.7,2.8-3.1,4.9-6.1,5.1h-0.6H83.9v17.8c0,2.7-2.1,4.9-4.9,4.9s-4.9-2.1-4.9-4.9V88.8   c0-1.3,0.5-2.5,1.5-3.4C76.5,84.4,77.8,83.9,79,83.9z" />
+                      </g>
+                      <rect x="38.8" y="70.8" width="50.6" height="6" />
+                    </svg>
+                  </div>
+                  <div className="px-7 mt-6">
+                    <h1 className="text-2xl font-bold text-[#e8e8e8] group-hover:text-[#CFD7FF]  transition ease-out duration-300">
                       03.
                     </h1>
-                    <h2 className="text-1xl mt-4 font-bold uppercase text-white group-hover:text-[#d2a51e] group-hover:ml-4 transition-all ease-out duration-300">
+                    <h2 className="text-1xl mt-4 font-bold uppercase text-[#e8e8e8] group-hover:text-[#CFD7FF] group-hover:ml-4 transition-all ease-out duration-300">
                       We talk to you every day.
                     </h2>
-                    <p className="mt-2 opacity-60 text-white group-hover:text-black group-hover:opacity-100 ">
+                    <p className="my-6  text-[#e1e1e1] opacity-[0.8] group-hover:text-[#CFD7FF] ">
                       Your success is our priority. We keep you informed with
                       timely insights and guidance, ensuring youre prepared to
                       seize opportunities as they arise. With us, youre never
@@ -307,7 +322,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="mt-3 mb-1 text-left text-xs font-medium text-black group-hover:text-indigo-400 uppercase group-hover:ml-[10rem] transition-all ease-out duration-300">
-                    ------------
+                    ───────
                   </p>
                   <p className="mb-2 text-left text-gray-800 group-hover:text-indigo-600">
                     We choose the best mix of large, small, and mid cap
@@ -326,7 +341,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="mt-3 mb-1 text-left text-xs font-medium text-black group-hover:text-red-400 uppercase group-hover:ml-[10rem] transition-all ease-out duration-300">
-                    ------------
+                    ───────
                   </p>
                   <p className="mb-2 text-left text-gray-800 group-hover:text-red-400">
                     Our specialized analysts possess expertise across various
@@ -346,7 +361,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="mt-3 mb-1 text-left text-xs font-medium text-black group-hover:text-[springgreen] uppercase group-hover:ml-[10rem] transition-all ease-out duration-300">
-                    ------------
+                    ───────
                   </p>
                   <p className="mb-2 text-left text-gray-800 group-hover:text-green-400">
                     We bring together everything that the most ambitious crypto
@@ -366,7 +381,7 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="mt-3 mb-1 text-left text-xs font-medium text-black group-hover:text-blue-600 uppercase group-hover:ml-[10rem] transition-all ease-out duration-300">
-                    ------------
+                    ───────
                   </p>
                   <p className="mb-2 text-left text-gray-800 group-hover:text-blue-600">
                     We analyze both macro and micro aspects of crypto,
@@ -420,7 +435,7 @@ export default function Home() {
               author="John Doe"
               date="February 3, 2024"
               tag="Technology"
-              title="Report 1"
+              title="Lorem ipsum dolor sit amet, consectetur adipiscing elit"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             />
 
@@ -429,7 +444,7 @@ export default function Home() {
               author="John Doe"
               date="February 3, 2024"
               tag="Technology"
-              title="Report 2"
+              title="Lorem ipsum dolor sit amet"
               description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
             />
 

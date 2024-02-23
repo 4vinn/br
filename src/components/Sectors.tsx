@@ -7,17 +7,6 @@ interface Project {
   color: string;
 }
 
-// const projects: Project[] = [
-//   { title: "⪢ AI", color: "#0CBCF0" },
-//   { title: "⪢ RWA", color: "#F0183C" },
-//   { title: "⪢ DeFi", color: "#DCF018" },
-//   { title: "⪢ DePin", color: "#18F0E8" },
-//   { title: "⪢ BRC20", color: "#F0BA18" },
-//   { title: "⪢ Gaming", color: "#8C0CF0" },
-//   { title: "⪢ Infrastructure", color: "#F06318" },
-//   { title: "⪢ Modular Blockchains", color: "#0C34F0" },
-// ];
-
 const projects: Project[] = [
   { title: "⪢ AI", color: "#000" },
   { title: "⪢ RWA", color: "#000" },
