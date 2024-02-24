@@ -13,29 +13,25 @@ export default function Home() {
   const [recentBlogs, setRecentBlogs] = useState<any>([]);
   const [recentReports, setRecentReports] = useState<any>([]);
 
-
   const fetchData = async (is_report: boolean) => {
     try {
       const response = await axios.post("/api/blog", {
         is_report: is_report,
         recent: true,
-      })
-      if (response.data.code===0) {
+      });
+      if (response.data.code === 0) {
         if (is_report) {
           setRecentReports(response.data.data);
-        }
-        else {
+        } else {
           setRecentBlogs(response.data.data);
         }
       }
     } catch (error: any) {
       console.log(error);
     }
-  }
+  };
 
   useEffect(() => {
-
-
     const typed = new Typed(el.current, {
       strings: ["DeFi.", "DePin.", "RWA.", "Gaming.", "BRC20.", "AI."],
       typeSpeed: 50,
@@ -52,16 +48,12 @@ export default function Home() {
     return () => {
       typed.destroy();
     };
-
   }, []);
 
   const Earth = dynamic(() => import("@/components/Earth"), {
     ssr: false,
     loading: () => <Image src="/as.png" alt="earth" width={300} height={300} />,
   });
-
-
-
 
   return (
     <main>
@@ -73,7 +65,7 @@ export default function Home() {
         </div>
         <div className="bganimateR h-[120vh] w-[90vw] absolute -z-[1] right-[0] -top-[4rem] overflow-hidden">
           <Image
-            //layout="responsive" 
+            // layout="responsive"
             src="/Graphic.svg"
             alt="bg"
             className="w-[100vw] animate-rotate ml-[50vw] -mt-[10vh] -right-[30rem] "
@@ -83,8 +75,8 @@ export default function Home() {
         </div>
         <div className="bganimateL h-[120vh] w-[90vw] absolute -z-[1] -left-[30rem] -top-[4rem] overflow-hidden -scale-x-[1]">
           <Image
-            //layout="responsive" 
-            src="/Graphic.svg""
+            // layout="responsive"
+            src="/Graphic.svg"
             alt="bg"
             className="w-[100vw] animate-rotate ml-[30vw] -mt-[10vh] -scale-x-[1]"
             width={100}
@@ -215,9 +207,9 @@ export default function Home() {
           </div>
 
           <div className="w-[84vw] mx-auto  lg:px-1 py-10">
-            <div className="grid grid-cols-3 h-full  ">
-              <div className="mr-6 text-left">
-                <div className="group py-3 bg-black hover:bg-[#3F7575]  hover:-translate-y-[1rem] rounded-[1rem] transition ease-out duration-300">
+            <div className="grid  lg:grid-cols-3 h-full gap-6 ">
+              <div className="text-left">
+                <div className="group h-full py-3 bg-black hover:bg-[#3F7575]  hover:-translate-y-[1rem] rounded-[1rem] transition ease-out duration-300">
                   <div className="image px-[1rem] mt-6 group-hover:px-[2rem] fill-white group-hover:fill-[#D0FF5F] transition-all ease-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -247,8 +239,8 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-              <div className=" mr-6 text-left ">
-                <div className="group py-3  bg-black  hover:bg-[#0053F5]  hover:-translate-y-[1rem] rounded-[1rem] cursor-default transition ease-out duration-300">
+              <div className="text-left ">
+                <div className="group h-full py-3  bg-black  hover:bg-[#0053F5]  hover:-translate-y-[1rem] rounded-[1rem] cursor-default transition ease-out duration-300">
                   <div className="image px-[1rem] mt-6 group-hover:px-[2rem] fill-white group-hover:fill-[#D7C5AF] transition-all ease-out duration-300">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -343,9 +335,9 @@ export default function Home() {
           <div className="w-[84vw] flex justify-between border-b-[2px]">
             <h1 className="text-[2.5rem]">WHY CHOOSE BLACKRABBIT?</h1>
           </div>
-          <div className="flex flex-col m-auto w-[84vw] py-8 md:flex-row">
-            <div className="w-full md:w-1/2">
-              <div className="relative h-full ml-5 mr-5 sm:mr-5">
+          <div className="w-[84vw] p-8 gap-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 ">
+            <div className="w-full ">
+              <div className="relative h-full">
                 <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
                 <div className="group relative h-full p-5 bg-white border-2 border-black hover:border-indigo-400 hover:scale-[1.07] ease-out duration-300 rounded-[2rem] ">
                   <div className="flex items-center -mt-1">
@@ -363,8 +355,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2">
-              <div className="relative h-full ml-5 mr-5 sm:mr-5">
+            <div className="w-full ">
+              <div className="relative h-full">
                 <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
                 <div className="relative h-full p-5 bg-white border-2 border-black hover:border-red-400 hover:scale-[1.07] ease-out duration-300 group rounded-[2rem]">
                   <div className="flex items-center -mt-1">
@@ -383,8 +375,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2">
-              <div className="relative h-full ml-5 mr-5 sm:mr-5">
+            <div className="w-full ">
+              <div className="relative h-full">
                 <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
                 <div className="relative h-full p-5 bg-white border-2 border-black hover:border-[springgreen] hover:scale-[1.07] ease-out duration-300 group rounded-[2rem]">
                   <div className="flex items-center -mt-1">
@@ -403,8 +395,8 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-1/2">
-              <div className="relative h-full ml-5 mr-5 sm:mr-5">
+            <div className="w-full ">
+              <div className="relative h-full">
                 <span className="absolute top-0 left-0 w-full h-full mt-2 ml-2 bg-black rounded-[2rem]"></span>
                 <div className="relative h-full p-5 bg-white border-2 border-black hover:border-blue-600 hover:scale-[1.07] ease-out duration-300 group rounded-[2rem]">
                   <div className="flex items-center -mt-1">
@@ -463,18 +455,24 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             {recentReports.map((item: any) => {
-              return <Card
-                key={item.slug}
-                imageUrl={item.thumbnail.data}
-                author={item.author}
-                date={item.published}
-                tag={item.tags}
-                title={item.title}
-              />
+              return (
+                <Card
+                  key={item.slug}
+                  imageUrl={item.thumbnail.data}
+                  author={item.author}
+                  date={item.published}
+                  tag={item.tags}
+                  title={item.title}
+                />
+              );
             })}
           </div>
           <div>
-            {recentReports.length === 0 && <div className="text-xl font-semibold w-fit">You will soon get the reports live here...</div>}
+            {recentReports.length === 0 && (
+              <div className="text-xl font-semibold w-fit">
+                You will soon get the reports live here...
+              </div>
+            )}
           </div>
         </div>
         {/* --------------------------blogs---------------------------- */}
@@ -508,18 +506,24 @@ export default function Home() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
             {recentBlogs.map((item: any) => {
-              return <Card
-                key={item.slug}
-                imageUrl={item.thumbnail.data}
-                author={item.author}
-                date={item.published}
-                tag={item.tags}
-                title={item.title}
-              />
+              return (
+                <Card
+                  key={item.slug}
+                  imageUrl={item.thumbnail.data}
+                  author={item.author}
+                  date={item.published}
+                  tag={item.tags}
+                  title={item.title}
+                />
+              );
             })}
           </div>
           <div>
-            {recentBlogs.length === 0 && <div className="text-xl font-semibold w-fit">You will soon get the blogs live here...</div>}
+            {recentBlogs.length === 0 && (
+              <div className="text-xl font-semibold w-fit">
+                You will soon get the blogs live here...
+              </div>
+            )}
           </div>
         </div>
       </div>
