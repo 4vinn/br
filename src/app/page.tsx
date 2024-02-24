@@ -73,8 +73,8 @@ export default function Home() {
         </div>
         <div className="bganimateR h-[120vh] w-[90vw] absolute -z-[1] right-[0] -top-[4rem] overflow-hidden">
           <Image
-            layout="responsive"
-            src="https://architectpartners.com/wp-content/uploads/2022/11/Graphic-main-02.svg"
+            //layout="responsive" 
+            src="/Graphic.svg"
             alt="bg"
             className="w-[100vw] animate-rotate ml-[50vw] -mt-[10vh] -right-[30rem] "
             width={100}
@@ -83,8 +83,8 @@ export default function Home() {
         </div>
         <div className="bganimateL h-[120vh] w-[90vw] absolute -z-[1] -left-[30rem] -top-[4rem] overflow-hidden -scale-x-[1]">
           <Image
-            layout="responsive"
-            src="https://architectpartners.com/wp-content/uploads/2022/11/Graphic-main-02.svg"
+            //layout="responsive" 
+            src="/Graphic.svg""
             alt="bg"
             className="w-[100vw] animate-rotate ml-[30vw] -mt-[10vh] -scale-x-[1]"
             width={100}
