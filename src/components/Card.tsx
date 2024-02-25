@@ -51,7 +51,7 @@ const Card: React.FC<CardProps> = ({
             return (
               <span
                 key={index}
-                className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] "
+                className="text-[#55ee6ac9] px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] "
               >
                 {tagname.name}
               </span>

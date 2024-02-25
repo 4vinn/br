@@ -1,6 +1,7 @@
 "use client";
 import Card from "@/components/Card";
 import axios from "axios";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useState, useEffect } from "react";
 
 function Report() {
@@ -111,7 +112,17 @@ function Report() {
   //   },
   // ];
 
-  const tags = ["Airdrop", "Blockchain", "NFT", "Technology"];
+  //Tag buttons for filtering
+  const tags = [
+    "AI",
+    "RWA",
+    "DeFi",
+    "DePIN",
+    "BRC20",
+    "Gaming",
+    "Infrastructure",
+    "Blockchain",
+  ];
 
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   // Handle tag selection/de-selection
@@ -146,67 +157,85 @@ function Report() {
 
   return (
     <div>
-      <div className="flex flex-col w-[84vw] m-auto">
-        {/* Heading + filters */}
-        <div className="flex flex-row justify-between items-center py-5">
-          <h2 className="text-[28px] font-bold">Reports</h2>
-          <div className="flex mb-4  mt-[1vw]">
-            <button
-              className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
-                selectedTags.length === 0
-                  ? "bg-black text-[white] border-black"
-                  : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
-              }
-              }`}
-              onClick={() => setSelectedTags([])}
-            >
-              All
-            </button>
-            {tags.map((tag) => (
+      <AnimatePresence>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 15 }}
+          transition={{ delay: 0.25 }}
+          className="flex flex-col w-[84vw] m-auto"
+        >
+          {/* Heading + filters */}
+          <div className="flex flex-row justify-between items-center py-5">
+            <h2 className="text-[28px] font-bold">Reports</h2>
+            <div className="flex mb-4  mt-[1vw]">
               <button
-                key={tag}
                 className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
-                  selectedTags.includes(tag)
+                  selectedTags.length === 0
                     ? "bg-black text-[white] border-black"
                     : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
-                }`}
-                onClick={() => handleTagClick(tag)}
+                }
+              }`}
+                onClick={() => setSelectedTags([])}
               >
-                {tag}
+                All
               </button>
-            ))}
+              {tags.map((tag) => (
+                <button
+                  key={tag}
+                  className={`ml-2 rounded-[1rem] px-4 transition-all duration-10 ease-in-out h-[2rem] text-[grey] border-[grey] ${
+                    selectedTags.includes(tag)
+                      ? "bg-black text-[white] border-black"
+                      : "bg-transparent border hover:border-black hover:-skew-x-12 hover:text-black"
+                  }`}
+                  onClick={() => handleTagClick(tag)}
+                >
+                  {tag}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-        {/* Displayingg filtered blogs */}
-        <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
-          {filteredReports.map(
-            (
-              blog: {
-                imageUrl: string;
-                author: string;
-                date: string;
-                tag: string[];
-                title: string;
-              },
-              index: React.Key | null | undefined
-            ) => (
-              <Card
-                key={index}
-                imageUrl={blog.imageUrl}
-                author={blog.author}
-                date={blog.date}
-                tag={blog.tag}
-                title={blog.title}
-              />
-            )
-          )}
-        </div>
-        <div>
-          {filteredReports.length === 0 && (
-            <div className="text-xl font-semibold w-fit">Coming soon...</div>
-          )}
-        </div>
-      </div>
+          {/* Displayingg filtered blogs */}
+          <div className="grid  grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto">
+            {filteredReports.map(
+              (
+                blog: {
+                  imageUrl: string;
+                  author: string;
+                  date: string;
+                  tag: string[];
+                  title: string;
+                },
+                index: React.Key | null | undefined
+              ) => (
+                <Card
+                  key={index}
+                  imageUrl={blog.imageUrl}
+                  author={blog.author}
+                  date={blog.date}
+                  tag={blog.tag}
+                  title={blog.title}
+                />
+              )
+            )}
+          </div>
+          <AnimatePresence>
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 15 }}
+              transition={{ delay: 0.25 }}
+              className="flex flex-col w-[84vw] m-auto"
+            >
+              {filteredReports.length === 0 && (
+                <div className="text-xl font-semibold w-fit">
+                  Coming soon...
+                </div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 }

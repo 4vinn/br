@@ -9,7 +9,8 @@ const config: Config = {
   theme: {
     extend: {
       animation: {
-        title: "title 3s ease-out forwards",
+        title: "title 4s ease-in-out forwards",
+        a: "title 1s ease-in-out forwards",
       },
       keyframes: {
         title: {

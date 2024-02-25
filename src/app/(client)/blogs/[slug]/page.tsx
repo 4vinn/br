@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Card from "@/components/Card";
+import { AnimatePresence, motion } from "framer-motion";
 
 const BPage = () => {
   const pathname = usePathname();
@@ -65,85 +66,93 @@ const BPage = () => {
   }, []);
 
   return (
-    <div className="w-full">
-      <div className="pl-1 pr-1 w-[84vw] m-auto flex flex-row">
-        <div className="toc mt-5 pt-5 border-[1px] border-solid border-dark text-dark rounded-lg p-4 sticky top-[6rem] max-h-[80vh] overflow-hidden overflow-y-auto ">
-          <div className="border-b-[1px] border-[#28281e] w-[20vw] py-2 text-xl font-medium">
-            Table of contents
-          </div>
-          <div className="pt-3">
-            <ul>
-              {contentHeadings.map((content: any, index: number) => {
-                return (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      document
-                        .querySelectorAll("h1")
-                        [index].scrollIntoView({ behavior: "smooth" });
-                    }}
-                    className="flex justify-start items-center gap-4 cursor-pointer"
-                  >
-                    <div>
-                      {/* <Image src={"/arrow2.png"} alt={"arrow"} width={30} height={40} /> */}
-                      ⪢
-                    </div>
-                    <p>{content}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        </div>
-
-        <div className="post pt-5 w-[60vw] pl-[3.25rem]">
-          <div className="flex flex-col items-start">
-            <h1 className="text-5xl font-medium py-5 w-full text-left">
-              {blog.title}
-            </h1>
-
-            <div className="meta w-full items-center flex text-[.8rem] text-[#28281e] border-b-[2px] pb-[.5rem] gap-20">
-              <span>{blog.author}</span>
-              <span>{blog.published}</span>
-              <div className="flex justify-center items-center">
-                {blog.tags?.map((tagname: any, index: number) => {
+    <AnimatePresence>
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 15 }}
+        transition={{ delay: 0.25 }}
+        className="w-full"
+      >
+        <div className="pl-1 pr-1 w-[84vw] m-auto flex flex-row">
+          <div className="toc mt-5 pt-5 border-[1px] border-solid border-dark text-dark rounded-lg p-4 sticky top-[6rem] max-h-[80vh] overflow-hidden overflow-y-auto ">
+            <div className="border-b-[1px] border-[#28281e] w-[20vw] py-2 text-xl font-medium">
+              Table of contents
+            </div>
+            <div className="pt-3">
+              <ul>
+                {contentHeadings.map((content: any, index: number) => {
                   return (
-                    <span
+                    <li
                       key={index}
-                      className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] "
+                      onClick={() => {
+                        document
+                          .querySelectorAll("h1")
+                          [index].scrollIntoView({ behavior: "smooth" });
+                      }}
+                      className="flex justify-start items-center gap-4 cursor-pointer"
                     >
-                      {tagname.name}
-                    </span>
+                      <div>
+                        {/* <Image src={"/arrow2.png"} alt={"arrow"} width={30} height={40} /> */}
+                        ⪢
+                      </div>
+                      <p>{content}</p>
+                    </li>
                   );
                 })}
-              </div>
+              </ul>
             </div>
-            {<div dangerouslySetInnerHTML={{ __html: blogContent }}></div>}
+          </div>
+
+          <div className="post pt-5 w-[60vw] pl-[3.25rem]">
+            <div className="flex flex-col items-start">
+              <h1 className="text-5xl font-medium py-5 w-full text-left">
+                {blog.title}
+              </h1>
+
+              <div className="meta w-full items-center flex text-[.8rem] text-[#28281e] border-b-[2px] pb-[.5rem] gap-20">
+                <span>{blog.author}</span>
+                <span>{blog.published}</span>
+                <div className="flex justify-center items-center">
+                  {blog.tags?.map((tagname: any, index: number) => {
+                    return (
+                      <span
+                        key={index}
+                        className="text-[#55ee6ac9] font-semibold px-1 py-[0.1rem] mx-1 my-1 text-[0.8rem] border border-[#55ee6ac9] "
+                      >
+                        {tagname.name}
+                      </span>
+                    );
+                  })}
+                </div>
+              </div>
+              {<div dangerouslySetInnerHTML={{ __html: blogContent }}></div>}
+            </div>
           </div>
         </div>
-      </div>
-      <div className="recommended pl-1 pr-1 w-[84vw] m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
-        {recentBlogs.slice(0, 4).map((item: any) => {
-          return (
-            <Card
-              key={item.slug}
-              imageUrl={item.thumbnail.data}
-              author={item.author}
-              date={item.published}
-              tag={item.tags}
-              title={item.title}
-            />
-          );
-        })}
-      </div>
-      <div className="recommended pl-1 pr-1 w-[84vw] m-auto">
-        {recentBlogs.length === 0 && (
-          <div className="text-xl font-semibold w-fit">
-            You will soon get the blogs live here...
-          </div>
-        )}
-      </div>
-    </div>
+        <div className="recommended pl-1 pr-1 w-[84vw] m-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+          {recentBlogs.slice(0, 4).map((item: any) => {
+            return (
+              <Card
+                key={item.slug}
+                imageUrl={item.thumbnail.data}
+                author={item.author}
+                date={item.published}
+                tag={item.tags}
+                title={item.title}
+              />
+            );
+          })}
+        </div>
+        <div className="recommended pl-1 pr-1 w-[84vw] m-auto">
+          {recentBlogs.length === 0 && (
+            <div className="text-xl font-semibold w-fit">
+              You will soon get the blogs live here...
+            </div>
+          )}
+        </div>
+      </motion.div>
+    </AnimatePresence>
   );
 };
 

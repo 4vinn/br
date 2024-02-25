@@ -1,6 +1,7 @@
 import React from "react";
 import { gsap } from "gsap";
 import styles from "./sectors.module.css";
+import { motion } from "framer-motion";
 
 interface Project {
   title: string;
@@ -51,7 +52,15 @@ const Sectors: React.FC = () => {
             onMouseEnter={(e) => manageMouseEnter(e, index)}
             onMouseLeave={(e) => manageMouseLeave(e, index)}
           >
-            <p>{project.title}</p>
+            <motion.p
+              initial={{ opacity: 0, scale: 1, x: 100 }}
+              whileInView={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="w-full "
+            >
+              {project.title}
+            </motion.p>
           </div>
         ))}
       </div>

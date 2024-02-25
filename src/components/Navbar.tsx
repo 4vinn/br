@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { font1 } from "@/app/ui/fonts";
 
 const Navbar = () => {
   return (
@@ -14,28 +15,34 @@ const Navbar = () => {
             <ul className="flex gap-[8px] ">
               <li>
                 <Link href="/">
-                  <div className="px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform  ">
+                  <div
+                    className={`${font1.className} px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform`}
+                  >
                     HOME
                   </div>
                 </Link>
               </li>
               <li>
                 <Link href="/reports">
-                  <div className="px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0 ">
+                  <div
+                    className={`${font1.className} px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0 `}
+                  >
                     REPORTS
                   </div>
                 </Link>
               </li>
               <li>
                 <Link href="/blogs">
-                  <div className="px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0">
+                  <div
+                    className={`${font1.className} px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0`}
+                  >
                     BLOGS
                   </div>
                 </Link>
               </li>
               {/* <li>
                 <Link href="/account">
-                  <div className="px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0">
+                  <div className={`${font1.className} px-[11px] py-[2px] hover:bg-[#060606] hover:text-white inline-block hover:-skew-x-12 hover:transition transition-all ease-out duration-150 hover:transform hover:translate-z-0`}>
                     ACCOUNT
                   </div>
                 </Link>
